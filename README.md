@@ -1,4 +1,4 @@
-# inda_hr
+![alt text](https://inda.ai/wp-content/uploads/2022/09/inda-hr-elixir.png)
 
  # Introduction
 
