@@ -15,7 +15,7 @@ defmodule inda_hr.Model.JobAdRequest do
 
   @type t :: %__MODULE__{
     :"Data" => inda_hr.Model.JobadCommonData.t,
-    :"Metadata" => inda_hr.Model.JobadRequestsMetadata.t | nil
+    :"Metadata" => inda_hr.Model.RequestMetadata.t | nil
   }
 end
 
@@ -24,7 +24,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.JobAdRequest do
   def decode(value, options) do
     value
     |> deserialize(:"Data", :struct, inda_hr.Model.JobadCommonData, options)
-    |> deserialize(:"Metadata", :struct, inda_hr.Model.JobadRequestsMetadata, options)
+    |> deserialize(:"Metadata", :struct, inda_hr.Model.RequestMetadata, options)
   end
 end
 

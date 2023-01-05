@@ -22,7 +22,8 @@ defmodule inda_hr.Api.Skills do
   - opts (KeywordList): [optional] Optional parameters
     - :size (integer()): Number of similar skills to return.
     - :min_score (float()): Minimum pertinence score.
-    - :lang (String.t): Language of the skill.
+    - :src_lang (String.t): Optional. Language of the input skills.If missing, the detected language is assumed as `src_lang`.
+    - :dst_lang (String.t): Optional. Language of the input skills.If missing, the detected language is assumed as `src_lang`.
   ## Returns
 
   {:ok, inda_hr.Model.SimilarEntitiesResponse.t} on success
@@ -33,7 +34,8 @@ defmodule inda_hr.Api.Skills do
     optional_params = %{
       :"size" => :query,
       :"min_score" => :query,
-      :"lang" => :query
+      :"src_lang" => :query,
+      :"dst_lang" => :query
     }
     %{}
     |> method(:get)
@@ -58,7 +60,7 @@ defmodule inda_hr.Api.Skills do
   - connection (inda_hr.Connection): Connection to server
   - skills_classification_request (SkillsClassificationRequest): 
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): Language of the skill.
+    - :src_lang (String.t): Language of the input skills.
   ## Returns
 
   {:ok, inda_hr.Model.SkillsClassificationResponse.t} on success
@@ -67,7 +69,7 @@ defmodule inda_hr.Api.Skills do
   @spec skills_classification_post(Tesla.Env.client, inda_hr.Model.SkillsClassificationRequest.t, keyword()) :: {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.SkillsClassificationResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def skills_classification_post(connection, skills_classification_request, opts \\ []) do
     optional_params = %{
-      :"lang" => :query
+      :"src_lang" => :query
     }
     %{}
     |> method(:post)

@@ -15,7 +15,7 @@ defmodule inda_hr.Model.JobadMatchingQuery do
 
   @type t :: %__MODULE__{
     :"QueryFilters" => inda_hr.Model.QueryFilters.t | nil,
-    :"Resume" => inda_hr.Model.MatchingResumeDocument.t
+    :"Resume" => inda_hr.Model.Resume.t
   }
 end
 
@@ -24,7 +24,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.JobadMatchingQuery do
   def decode(value, options) do
     value
     |> deserialize(:"QueryFilters", :struct, inda_hr.Model.QueryFilters, options)
-    |> deserialize(:"Resume", :struct, inda_hr.Model.MatchingResumeDocument, options)
+    |> deserialize(:"Resume", :struct, inda_hr.Model.Resume, options)
   end
 end
 

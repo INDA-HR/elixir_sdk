@@ -10,7 +10,7 @@ defmodule inda_hr.Connection do
   use Tesla
 
   # Add any middleware here (authentication)
-  plug Tesla.Middleware.BaseUrl, "https://api.inda.ai"
+  plug Tesla.Middleware.BaseUrl, Application.get_env(:inda_hr___i_ntelligent_data_analysis_for_hr, :base_url, "https://api.inda.ai")
   plug Tesla.Middleware.Headers, [{"user-agent", "Elixir"}]
   plug Tesla.Middleware.EncodeJson, engine: Poison
 

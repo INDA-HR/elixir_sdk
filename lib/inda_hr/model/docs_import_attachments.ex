@@ -9,11 +9,13 @@ defmodule inda_hr.Model.DocsImportAttachments do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"Pic"
+    :"Pic",
+    :"CV"
   ]
 
   @type t :: %__MODULE__{
-    :"Pic" => inda_hr.Model.Image.t | nil
+    :"Pic" => inda_hr.Model.Image.t | nil,
+    :"CV" => inda_hr.Model.OptionalResumeAttachmentLanguage.t | nil
   }
 end
 
@@ -22,6 +24,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.DocsImportAttachments do
   def decode(value, options) do
     value
     |> deserialize(:"Pic", :struct, inda_hr.Model.Image, options)
+    |> deserialize(:"CV", :struct, inda_hr.Model.OptionalResumeAttachmentLanguage, options)
   end
 end
 

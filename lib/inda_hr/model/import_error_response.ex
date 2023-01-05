@@ -14,7 +14,7 @@ defmodule inda_hr.Model.ImportErrorResponse do
   ]
 
   @type t :: %__MODULE__{
-    :"InternalID" => AnyOfintegerstring | nil,
+    :"InternalID" => inda_hr.Model.Internalid.t,
     :"Error" => String.t
   }
 end
@@ -23,7 +23,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.ImportErrorResponse do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"InternalID", :struct, inda_hr.Model.AnyOfintegerstring, options)
+    |> deserialize(:"InternalID", :struct, inda_hr.Model.Internalid, options)
   end
 end
 

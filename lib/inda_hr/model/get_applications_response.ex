@@ -21,7 +21,7 @@ defmodule inda_hr.Model.GetApplicationsResponse do
     :"Hits" => integer() | nil,
     :"SearchID" => String.t | nil,
     :"ResumeID" => String.t,
-    :"Applications" => [AnyOfstringstring]
+    :"Applications" => [inda_hr.Model.ApplicationsInner.t]
   }
 end
 
@@ -29,7 +29,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.GetApplicationsResponse do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Applications", :list, inda_hr.Model.AnyOfstringstring, options)
+    |> deserialize(:"Applications", :list, inda_hr.Model.ApplicationsInner, options)
   end
 end
 

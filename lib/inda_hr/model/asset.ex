@@ -16,9 +16,9 @@ defmodule inda_hr.Model.Asset do
   ]
 
   @type t :: %__MODULE__{
-    :"Name" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t,
-    :"Description" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"Sector" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
+    :"Name" => inda_hr.Model.BaseLocationsValueModelStrictStr.t,
+    :"Description" => inda_hr.Model.BaseLocationsValueModelStrictStr.t | nil,
+    :"Sector" => inda_hr.Model.BaseLocationsValueModelStrictStr.t | nil,
     :"Tags" => [String.t] | nil
   }
 end
@@ -27,9 +27,9 @@ defimpl Poison.Decoder, for: inda_hr.Model.Asset do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Name", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"Description", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"Sector", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
+    |> deserialize(:"Name", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
+    |> deserialize(:"Description", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
+    |> deserialize(:"Sector", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
   end
 end
 

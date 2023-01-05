@@ -16,7 +16,7 @@ defmodule inda_hr.Model.UpdateItemRequest do
 
   @type t :: %__MODULE__{
     :"Data" => inda_hr.Model.ResumeCommonData.t | nil,
-    :"Metadata" => inda_hr.Model.ResumeRequestsMetadata.t | nil,
+    :"Metadata" => inda_hr.Model.Metadata.t | nil,
     :"Attachments" => inda_hr.Model.CvAttachmentDocument.t
   }
 end
@@ -26,7 +26,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.UpdateItemRequest do
   def decode(value, options) do
     value
     |> deserialize(:"Data", :struct, inda_hr.Model.ResumeCommonData, options)
-    |> deserialize(:"Metadata", :struct, inda_hr.Model.ResumeRequestsMetadata, options)
+    |> deserialize(:"Metadata", :struct, inda_hr.Model.Metadata, options)
     |> deserialize(:"Attachments", :struct, inda_hr.Model.CvAttachmentDocument, options)
   end
 end

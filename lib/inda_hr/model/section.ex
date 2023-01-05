@@ -16,8 +16,8 @@ defmodule inda_hr.Model.Section do
 
   @type t :: %__MODULE__{
     :"Details" => inda_hr.Model.SectionDetails.t | nil,
-    :"Title" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"Content" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t
+    :"Title" => inda_hr.Model.BaseBenefitsValueModelStrictStr.t | nil,
+    :"Content" => inda_hr.Model.BaseBenefitsValueModelStrictStr.t
   }
 end
 
@@ -26,8 +26,8 @@ defimpl Poison.Decoder, for: inda_hr.Model.Section do
   def decode(value, options) do
     value
     |> deserialize(:"Details", :struct, inda_hr.Model.SectionDetails, options)
-    |> deserialize(:"Title", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"Content", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
+    |> deserialize(:"Title", :struct, inda_hr.Model.BaseBenefitsValueModelStrictStr, options)
+    |> deserialize(:"Content", :struct, inda_hr.Model.BaseBenefitsValueModelStrictStr, options)
   end
 end
 

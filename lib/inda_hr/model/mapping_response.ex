@@ -9,12 +9,16 @@ defmodule inda_hr.Model.MappingResponse do
 
   @derive [Poison.Encoder]
   defstruct [
+    :"DocType",
+    :"Indexname",
     :"Custom",
     :"CustomFields",
     :"Multiplier"
   ]
 
   @type t :: %__MODULE__{
+    :"DocType" => String.t | nil,
+    :"Indexname" => String.t,
     :"Custom" => boolean(),
     :"CustomFields" => map() | nil,
     :"Multiplier" => float() | nil

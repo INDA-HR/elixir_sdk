@@ -15,7 +15,7 @@ defmodule inda_hr.Model.JobAdRemoteWorking do
 
   @type t :: %__MODULE__{
     :"Type" => inda_hr.Model.JobAdRemoteWorkingType.t | nil,
-    :"Frequency" => AnyOfRemoteWorkingFrequencyValueRemoteWorkingFrequencyRange | nil
+    :"Frequency" => inda_hr.Model.Frequency1.t | nil
   }
 end
 
@@ -24,7 +24,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.JobAdRemoteWorking do
   def decode(value, options) do
     value
     |> deserialize(:"Type", :struct, inda_hr.Model.JobAdRemoteWorkingType, options)
-    |> deserialize(:"Frequency", :struct, inda_hr.Model.AnyOfRemoteWorkingFrequencyValueRemoteWorkingFrequencyRange, options)
+    |> deserialize(:"Frequency", :struct, inda_hr.Model.Frequency1, options)
   end
 end
 

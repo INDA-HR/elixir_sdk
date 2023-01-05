@@ -9,12 +9,16 @@ defmodule inda_hr.Model.IndexedDocumentFailuresResponse do
 
   @derive [Poison.Encoder]
   defstruct [
+    :"DocType",
+    :"Indexname",
     :"Count",
     :"ImportID",
     :"Failures"
   ]
 
   @type t :: %__MODULE__{
+    :"DocType" => String.t | nil,
+    :"Indexname" => String.t,
     :"Count" => integer(),
     :"ImportID" => String.t | nil,
     :"Failures" => [inda_hr.Model.IndexedDocumentFailure.t]

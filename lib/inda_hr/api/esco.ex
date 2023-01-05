@@ -13,14 +13,14 @@ defmodule inda_hr.Api.ESCO do
 
   @doc """
   ESCO Occupations Hierarchy
-   This method provides the most similar ESCO job title given a *jobtitle* (that could be a word or a sentence in several languages), its hierarchy classification according with ISCO classification, and  the top three industries and job functions where the occupation is distributed.   More details about ESCO occupations hierarchy are showed [here](https://ec.europa.eu/esco/portal/occupation).  
+   This method provides the most similar ESCO job title given a *jobtitle* (that could be a word or a sentence in several languages), its hierarchy classification according with ISCO classification, and the top three industries and job functions where the occupation is distributed.  More details about ESCO occupations hierarchy are showed [here](https://ec.europa.eu/esco/portal/occupation).  
 
   ## Parameters
 
   - connection (inda_hr.Connection): Connection to server
   - query (String.t): It could be any word or sentence in several languages.
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language of the similar ESCO occupations.
+    - :dst_lang (String.t): Language of the similar ESCO occupations.
   ## Returns
 
   {:ok, inda_hr.Model.MostSimilarJobtitleResponseCategorized.t} on success
@@ -29,7 +29,7 @@ defmodule inda_hr.Api.ESCO do
   @spec esco_occupations_hierarchy_get(Tesla.Env.client, String.t, keyword()) :: {:ok, inda_hr.Model.MostSimilarJobtitleResponseCategorized.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def esco_occupations_hierarchy_get(connection, query, opts \\ []) do
     optional_params = %{
-      :"lang" => :query
+      :"dst_lang" => :query
     }
     %{}
     |> method(:get)
@@ -48,14 +48,14 @@ defmodule inda_hr.Api.ESCO do
 
   @doc """
   ESCO Skills Hierarchy
-   This method provides the most similar ESCO skills given a *query* (representing a skill) that could be a word or a sentence in several languages; also its hierarchy classification according with ESCO is returned.   More details about ESCO skills hierarchy are showed [here](https://ec.europa.eu/esco/portal/skill).  
+   This method provides the most similar ESCO skills given a *query* (representing a skill) that could be a word or a sentence in several languages; also its hierarchy classification according with ESCO is returned.  More details about ESCO skills hierarchy are showed [here](https://ec.europa.eu/esco/portal/skill).  
 
   ## Parameters
 
   - connection (inda_hr.Connection): Connection to server
   - query (String.t): A word or a brief sentence in several languages.
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language of the similar ESCO skills.
+    - :dst_lang (String.t): Language of the similar ESCO skills.
   ## Returns
 
   {:ok, inda_hr.Model.MostSimilarSkillResponseCategorized.t} on success
@@ -64,7 +64,7 @@ defmodule inda_hr.Api.ESCO do
   @spec esco_skills_hierarchy_get(Tesla.Env.client, String.t, keyword()) :: {:ok, inda_hr.Model.MostSimilarSkillResponseCategorized.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def esco_skills_hierarchy_get(connection, query, opts \\ []) do
     optional_params = %{
-      :"lang" => :query
+      :"dst_lang" => :query
     }
     %{}
     |> method(:get)
@@ -83,14 +83,14 @@ defmodule inda_hr.Api.ESCO do
 
   @doc """
   From description to ESCO Occupations
-   This method provides the list of n most affine ESCO occupations given a sentence or a long description.  For each returned occupation, the service provides also a list of the main related skills according to ESCO classification.  More details about ESCO occupations are showed [here](https://ec.europa.eu/esco/portal/occupation).  
+   This method provides the list of n most affine ESCO occupations given a sentence or a long description. For each returned occupation, the service provides also a list of the main related skills according to ESCO classification.  More details about ESCO occupations are showed [here](https://ec.europa.eu/esco/portal/occupation).  
 
   ## Parameters
 
   - connection (inda_hr.Connection): Connection to server
   - description_input (DescriptionInput): 
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language of the similar ESCO occupations.
+    - :dst_lang (String.t): Language of the similar ESCO occupations.
     - :size (integer()): The maximum number of similar ESCO occupations retrieved by the algorithm.
     - :min_score (float()): Minimum score of the similar ESCO occupations with respect to the job title queried by the user.
   ## Returns
@@ -101,7 +101,7 @@ defmodule inda_hr.Api.ESCO do
   @spec from_description_to_esco_occupations_post(Tesla.Env.client, inda_hr.Model.DescriptionInput.t, keyword()) :: {:ok, inda_hr.Model.EscoJobtitleResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def from_description_to_esco_occupations_post(connection, description_input, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"size" => :query,
       :"min_score" => :query
     }
@@ -122,14 +122,14 @@ defmodule inda_hr.Api.ESCO do
 
   @doc """
   From description to ESCO Skills
-   This method provides the list of n most affine ESCO skills given a sentence or a long description. For each returned skill, the service provides also a list of the main occupations where the skill is mandatory  according to ESCO classification.  More details about ESCO skills are showed [here](https://ec.europa.eu/esco/portal/skill).  
+   This method provides the list of n most affine ESCO skills given a sentence or a long description. For each returned skill, the service provides also a list of the main occupations where the skill is mandatory according to ESCO classification.  More details about ESCO skills are showed [here](https://ec.europa.eu/esco/portal/skill).  
 
   ## Parameters
 
   - connection (inda_hr.Connection): Connection to server
   - description_input (DescriptionInput): 
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language of the similar ESCO skills.
+    - :dst_lang (String.t): Language of the similar ESCO skills.
     - :size (integer()): The maximum number of similar ESCO skills retrieved by the algorithm.
     - :min_score (float()): Minimum score of the similar ESCO skills with respect to the skill queried by the user.
   ## Returns
@@ -140,7 +140,7 @@ defmodule inda_hr.Api.ESCO do
   @spec from_description_to_esco_skills_post(Tesla.Env.client, inda_hr.Model.DescriptionInput.t, keyword()) :: {:ok, inda_hr.Model.EscoSkillResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def from_description_to_esco_skills_post(connection, description_input, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"size" => :query,
       :"min_score" => :query
     }
@@ -292,7 +292,7 @@ defmodule inda_hr.Api.ESCO do
   - connection (inda_hr.Connection): Connection to server
   - query (String.t): A word or a brief sentence in several languages.
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language of the similar ESCO occupations.
+    - :dst_lang (String.t): Language of the similar ESCO occupations.
     - :size (integer()): The maximum number of similar ESCO occupations retrieved by the algorithm.
     - :min_score (float()): Minimum score of the similar ESCO occupations with respect to the job title queried by the user.
   ## Returns
@@ -303,7 +303,7 @@ defmodule inda_hr.Api.ESCO do
   @spec similar_esco_occupations_get(Tesla.Env.client, String.t, keyword()) :: {:ok, inda_hr.Model.EscoJobtitleResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def similar_esco_occupations_get(connection, query, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"size" => :query,
       :"min_score" => :query
     }
@@ -324,14 +324,14 @@ defmodule inda_hr.Api.ESCO do
 
   @doc """
   Similar ESCO Skills
-   This method provides the list of n most similar ESCO skills given a *skill*. For each returned skill, the service provides also a list of the main occupations where the skill is mandatory  according to ESCO classification.  More details about ESCO skills are showed [here](https://ec.europa.eu/esco/portal/skill).  
+   This method provides the list of n most similar ESCO skills given a *skill*. For each returned skill, the service provides also a list of the main occupations where the skill is mandatory according to ESCO classification.  More details about ESCO skills are showed [here](https://ec.europa.eu/esco/portal/skill).  
 
   ## Parameters
 
   - connection (inda_hr.Connection): Connection to server
   - query (String.t): A word or a brief sentence in several languages.
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language of the similar ESCO skills.
+    - :dst_lang (String.t): Language of the similar ESCO skills.
     - :size (integer()): The maximum number of similar ESCO skills retrieved by the algorithm.
     - :min_score (float()): Minimum score of the similar ESCO skills with respect to the skill queried by the user.
   ## Returns
@@ -342,7 +342,7 @@ defmodule inda_hr.Api.ESCO do
   @spec similar_esco_skills_get(Tesla.Env.client, String.t, keyword()) :: {:ok, inda_hr.Model.EscoSkillResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def similar_esco_skills_get(connection, query, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"size" => :query,
       :"min_score" => :query
     }

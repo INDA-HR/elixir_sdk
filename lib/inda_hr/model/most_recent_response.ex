@@ -9,12 +9,16 @@ defmodule inda_hr.Model.MostRecentResponse do
 
   @derive [Poison.Encoder]
   defstruct [
+    :"DocType",
+    :"Indexname",
     :"Hits",
     :"Total",
     :"Out"
   ]
 
   @type t :: %__MODULE__{
+    :"DocType" => String.t | nil,
+    :"Indexname" => String.t,
     :"Hits" => integer(),
     :"Total" => integer(),
     :"Out" => [inda_hr.Model.MostRecentItem.t]

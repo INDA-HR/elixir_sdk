@@ -14,7 +14,7 @@ defmodule inda_hr.Model.Branch do
   ]
 
   @type t :: %__MODULE__{
-    :"Name" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t,
+    :"Name" => inda_hr.Model.BaseLocationsValueModelStrictStr.t,
     :"Location" => inda_hr.Model.CompanyCommonLocation.t
   }
 end
@@ -23,7 +23,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.Branch do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Name", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
+    |> deserialize(:"Name", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
     |> deserialize(:"Location", :struct, inda_hr.Model.CompanyCommonLocation, options)
   end
 end

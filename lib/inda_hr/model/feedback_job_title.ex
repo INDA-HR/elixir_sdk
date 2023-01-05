@@ -14,8 +14,8 @@ defmodule inda_hr.Model.FeedbackJobTitle do
   ]
 
   @type t :: %__MODULE__{
-    :"Details" => inda_hr.Model.ResumeJobTitleDetails.t | nil,
-    :"Value" => AnyOfstringFeedbackEntityInput | nil
+    :"Details" => inda_hr.Model.OptionalResumeJobTitleDetails.t | nil,
+    :"Value" => inda_hr.Model.Value1.t | nil
   }
 end
 
@@ -23,8 +23,8 @@ defimpl Poison.Decoder, for: inda_hr.Model.FeedbackJobTitle do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Details", :struct, inda_hr.Model.ResumeJobTitleDetails, options)
-    |> deserialize(:"Value", :struct, inda_hr.Model.AnyOfstringFeedbackEntityInput, options)
+    |> deserialize(:"Details", :struct, inda_hr.Model.OptionalResumeJobTitleDetails, options)
+    |> deserialize(:"Value", :struct, inda_hr.Model.Value1, options)
   end
 end
 

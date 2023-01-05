@@ -15,7 +15,7 @@ defmodule inda_hr.Model.QueryTerm do
 
   @type t :: %__MODULE__{
     :"Term" => String.t,
-    :"Language" => String.t
+    :"Language" => String.t | nil
   }
 end
 

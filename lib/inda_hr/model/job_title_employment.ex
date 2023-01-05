@@ -18,11 +18,11 @@ defmodule inda_hr.Model.JobTitleEmployment do
   ]
 
   @type t :: %__MODULE__{
-    :"Code" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"Category" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
+    :"Code" => inda_hr.Model.BaseBenefitsValueModelStrictStr.t | nil,
+    :"Category" => inda_hr.Model.BaseBenefitsValueModelStrictStr.t | nil,
     :"Type" => inda_hr.Model.EmploymentType.t | nil,
     :"Industries" => [inda_hr.Model.BaseEmploymentsIndustry.t] | nil,
-    :"FunctionalAreas" => [inda_hr.Model.BaseEmploymentsValueModelStrictStr.t] | nil,
+    :"FunctionalAreas" => [inda_hr.Model.BaseBenefitsValueModelStrictStr.t] | nil,
     :"Activities" => [inda_hr.Model.Activity.t] | nil
   }
 end
@@ -31,11 +31,11 @@ defimpl Poison.Decoder, for: inda_hr.Model.JobTitleEmployment do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Code", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"Category", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
+    |> deserialize(:"Code", :struct, inda_hr.Model.BaseBenefitsValueModelStrictStr, options)
+    |> deserialize(:"Category", :struct, inda_hr.Model.BaseBenefitsValueModelStrictStr, options)
     |> deserialize(:"Type", :struct, inda_hr.Model.EmploymentType, options)
     |> deserialize(:"Industries", :list, inda_hr.Model.BaseEmploymentsIndustry, options)
-    |> deserialize(:"FunctionalAreas", :list, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
+    |> deserialize(:"FunctionalAreas", :list, inda_hr.Model.BaseBenefitsValueModelStrictStr, options)
     |> deserialize(:"Activities", :list, inda_hr.Model.Activity, options)
   end
 end

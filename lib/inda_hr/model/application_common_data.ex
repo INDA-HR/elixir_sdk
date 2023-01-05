@@ -23,8 +23,8 @@ defmodule inda_hr.Model.ApplicationCommonData do
   ]
 
   @type t :: %__MODULE__{
-    :"Objective" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"ProfessionalSummary" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
+    :"Objective" => inda_hr.Model.BaseBenefitsValueModelStrictStr.t | nil,
+    :"ProfessionalSummary" => inda_hr.Model.BaseBenefitsValueModelStrictStr.t | nil,
     :"DesiredEmployment" => inda_hr.Model.ResumeEmployment.t | nil,
     :"DesiredContracts" => [inda_hr.Model.ResumeContract.t] | nil,
     :"DesiredSalary" => inda_hr.Model.ResumeSalary.t | nil,
@@ -41,8 +41,8 @@ defimpl Poison.Decoder, for: inda_hr.Model.ApplicationCommonData do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Objective", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"ProfessionalSummary", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
+    |> deserialize(:"Objective", :struct, inda_hr.Model.BaseBenefitsValueModelStrictStr, options)
+    |> deserialize(:"ProfessionalSummary", :struct, inda_hr.Model.BaseBenefitsValueModelStrictStr, options)
     |> deserialize(:"DesiredEmployment", :struct, inda_hr.Model.ResumeEmployment, options)
     |> deserialize(:"DesiredContracts", :list, inda_hr.Model.ResumeContract, options)
     |> deserialize(:"DesiredSalary", :struct, inda_hr.Model.ResumeSalary, options)

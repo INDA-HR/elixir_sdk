@@ -20,7 +20,7 @@ defmodule inda_hr.Model.GetApplicationResponse do
     :"Data" => inda_hr.Model.ApplicationCommonData.t | nil,
     :"HiringDetails" => inda_hr.Model.HiringDetails.t | nil,
     :"ResumeID" => String.t,
-    :"JobAdID" => AnyOfstringstring | nil,
+    :"JobAdID" => inda_hr.Model.Jobadid.t,
     :"Metadata" => inda_hr.Model.PublicMetadataModel.t
   }
 end
@@ -31,7 +31,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.GetApplicationResponse do
     value
     |> deserialize(:"Data", :struct, inda_hr.Model.ApplicationCommonData, options)
     |> deserialize(:"HiringDetails", :struct, inda_hr.Model.HiringDetails, options)
-    |> deserialize(:"JobAdID", :struct, inda_hr.Model.AnyOfstringstring, options)
+    |> deserialize(:"JobAdID", :struct, inda_hr.Model.Jobadid, options)
     |> deserialize(:"Metadata", :struct, inda_hr.Model.PublicMetadataModel, options)
   end
 end

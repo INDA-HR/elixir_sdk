@@ -13,7 +13,7 @@ defmodule inda_hr.Api.ResumeToResumes do
 
   @doc """
   Similar Resumes
-   Setting as arguments the number *size* of documents to be retrieved and the number *offset* to be skipped, this method returns similar documents to resume *resume_id* in the index *indexname*.  
+  Setting as arguments the number *size* of documents to be retrieved and the number *offset* to be skipped, this method returns similar documents to resume *resume_id* in the index *indexname*.
 
   ## Parameters
 
@@ -25,6 +25,7 @@ defmodule inda_hr.Api.ResumeToResumes do
     - :size (integer()): Number of documents to return.
     - :offset (integer()): Number of documents to skip.
     - :min_score (float()): Optional. Minimum pertinence score.
+    - :dst_lang ([String.t]): Results languages. If left empty then the results will not be filtered by language and the they will contain multi-language results.
   ## Returns
 
   {:ok, inda_hr.Model.FoundDocsResponse.t} on success
@@ -35,7 +36,8 @@ defmodule inda_hr.Api.ResumeToResumes do
     optional_params = %{
       :"size" => :query,
       :"offset" => :query,
-      :"min_score" => :query
+      :"min_score" => :query,
+      :"dst_lang" => :query
     }
     %{}
     |> method(:post)

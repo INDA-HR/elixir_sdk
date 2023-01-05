@@ -18,30 +18,73 @@ defmodule inda_hr.Api.JobAdKnowledgeExtraction do
   ## Parameters
 
   - connection (inda_hr.Connection): Connection to server
-  - job_ad_entities_input (JobAdEntitiesInput): 
+  - job_ad_job_description_request (JobAdJobDescriptionRequest): 
   - opts (KeywordList): [optional] Optional parameters
-    - :size (integer()): Number of job titles to be returned, must be greater than <code style='color: #333333; opacity: 0.9'>0</code> and smaller or equal to <code style='color: #333333; opacity: 0.9'>10</code>.
+    - :src_lang (String.t): Job Description language. If left empty each section's language will detected automatically.
+    - :dst_lang (String.t): Extracted entities destination language. If left empty is assumed to be equal to the Job Description language.
+    - :size (integer()): Number of job titles to be returned, must be greater than <code style='color: #333333; opacity: 0.9'>0</code> and smaller or equal to <code style='color: #333333; opacity: 0.9'>20</code>.
     - :min_score (float()): Minimum score for the proposed job titles. The job titles with a score lower than this value will be neglected.
   ## Returns
 
   {:ok, inda_hr.Model.JobAdJobTitlesResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec extract_jobtitles_from_jobad_post(Tesla.Env.client, inda_hr.Model.JobAdEntitiesInput.t, keyword()) :: {:ok, inda_hr.Model.JobAdJobTitlesResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
-  def extract_jobtitles_from_jobad_post(connection, job_ad_entities_input, opts \\ []) do
+  @spec extract_jobtitles_from_jobad_post(Tesla.Env.client, inda_hr.Model.JobAdJobDescriptionRequest.t, keyword()) :: {:ok, inda_hr.Model.JobAdJobTitlesResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  def extract_jobtitles_from_jobad_post(connection, job_ad_job_description_request, opts \\ []) do
     optional_params = %{
+      :"src_lang" => :query,
+      :"dst_lang" => :query,
       :"size" => :query,
       :"min_score" => :query
     }
     %{}
     |> method(:post)
     |> url("/hr/v2/parse/jobad/jobtitles/")
-    |> add_param(:body, :body, job_ad_entities_input)
+    |> add_param(:body, :body, job_ad_job_description_request)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       { 200, %inda_hr.Model.JobAdJobTitlesResponse{}},
+      { 422, %inda_hr.Model.HttpValidationError{}}
+    ])
+  end
+
+  @doc """
+  Extract Languages from JobAd
+   This method extract job titles that are semantically related with a job advert.  The input is a json containing the structure of the advert, as described in the schema below and in the example on the right.  The field *sections* in the body contains a list of documents, which correspond to distinct sections of the advert (e.g., company description, job description, requirements); in each document, the field *content* contains the text of the section, while the field *weight* (a number between <code style='color: #333333; opacity: 0.9'>0</code> and <code style='color: #333333; opacity: 0.9'>1</code>) can be used to give different weights to the different sections in the skill extraction (e.g., a section with the requirements is probably much more relevant for the skill extraction than a section with the company description); in the absence of the field *value*, the maximum value (i.e., *weight* = <code style='color: #333333; opacity: 0.9'>1</code>) will be assumed.  The field *header* contains the information about the job title. 
+
+  ## Parameters
+
+  - connection (inda_hr.Connection): Connection to server
+  - job_ad_job_description_request (JobAdJobDescriptionRequest): 
+  - opts (KeywordList): [optional] Optional parameters
+    - :src_lang (String.t): Job Description language. If left empty each section's language will detected automatically.
+    - :dst_lang (String.t): Extracted entities destination language. If left empty is assumed to be equal to the Job Description language.
+    - :size (integer()): Number of languages to be returned, must be greater than <code style='color: #333333; opacity: 0.9'>0</code> and smaller or equal to <code style='color: #333333; opacity: 0.9'>20</code>.
+    - :min_score (float()): Minimum score for the proposed languages. The languages with a score lower than this value will be neglected.
+  ## Returns
+
+  {:ok, inda_hr.Model.JobAdLanguagesResponse.t} on success
+  {:error, Tesla.Env.t} on failure
+  """
+  @spec extract_languages_from_jobad_post(Tesla.Env.client, inda_hr.Model.JobAdJobDescriptionRequest.t, keyword()) :: {:ok, inda_hr.Model.HttpValidationError.t} | {:ok, inda_hr.Model.JobAdLanguagesResponse.t} | {:error, Tesla.Env.t}
+  def extract_languages_from_jobad_post(connection, job_ad_job_description_request, opts \\ []) do
+    optional_params = %{
+      :"src_lang" => :query,
+      :"dst_lang" => :query,
+      :"size" => :query,
+      :"min_score" => :query
+    }
+    %{}
+    |> method(:post)
+    |> url("/hr/v2/parse/jobad/languages/")
+    |> add_param(:body, :body, job_ad_job_description_request)
+    |> add_optional_params(optional_params, opts)
+    |> Enum.into([])
+    |> (&Connection.request(connection, &1)).()
+    |> evaluate_response([
+      { 200, %inda_hr.Model.JobAdLanguagesResponse{}},
       { 422, %inda_hr.Model.HttpValidationError{}}
     ])
   end
@@ -53,25 +96,29 @@ defmodule inda_hr.Api.JobAdKnowledgeExtraction do
   ## Parameters
 
   - connection (inda_hr.Connection): Connection to server
-  - job_ad_entities_input (JobAdEntitiesInput): 
+  - job_ad_job_description_request (JobAdJobDescriptionRequest): 
   - opts (KeywordList): [optional] Optional parameters
-    - :size (integer()): Number of skills to be returned, must be greater than <code style='color: #333333; opacity: 0.9'>0</code> and smaller or equal to <code style='color: #333333; opacity: 0.9'>50</code>.
+    - :src_lang (String.t): Job Description language. If left empty each section's language will detected automatically.
+    - :dst_lang (String.t): Extracted entities destination language. If left empty is assumed to be equal to the Job Description language.
+    - :size (integer()): Number of skills to be returned, must be greater than <code style='color: #333333; opacity: 0.9'>0</code> and smaller or equal to <code style='color: #333333; opacity: 0.9'>20</code>.
     - :min_score (float()): Minimum score for the proposed skills. The skills with a score lower than this value will be neglected.
   ## Returns
 
   {:ok, inda_hr.Model.JobAdSkillsResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec extract_skills_from_jobad_post(Tesla.Env.client, inda_hr.Model.JobAdEntitiesInput.t, keyword()) :: {:ok, inda_hr.Model.JobAdSkillsResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
-  def extract_skills_from_jobad_post(connection, job_ad_entities_input, opts \\ []) do
+  @spec extract_skills_from_jobad_post(Tesla.Env.client, inda_hr.Model.JobAdJobDescriptionRequest.t, keyword()) :: {:ok, inda_hr.Model.JobAdSkillsResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  def extract_skills_from_jobad_post(connection, job_ad_job_description_request, opts \\ []) do
     optional_params = %{
+      :"src_lang" => :query,
+      :"dst_lang" => :query,
       :"size" => :query,
       :"min_score" => :query
     }
     %{}
     |> method(:post)
     |> url("/hr/v2/parse/jobad/skills/")
-    |> add_param(:body, :body, job_ad_entities_input)
+    |> add_param(:body, :body, job_ad_job_description_request)
     |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()

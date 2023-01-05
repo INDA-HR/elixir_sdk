@@ -9,18 +9,18 @@ defmodule inda_hr.Model.DocumentTextResponse do
 
   @derive [Poison.Encoder]
   defstruct [
+    :"PlainText",
     :"Language",
     :"Filename",
     :"FileExt",
-    :"PlainText",
     :"ID"
   ]
 
   @type t :: %__MODULE__{
+    :"PlainText" => String.t,
     :"Language" => String.t | nil,
     :"Filename" => String.t | nil,
     :"FileExt" => String.t | nil,
-    :"PlainText" => String.t,
     :"ID" => String.t
   }
 end

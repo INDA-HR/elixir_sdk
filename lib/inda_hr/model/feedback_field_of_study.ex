@@ -15,7 +15,7 @@ defmodule inda_hr.Model.FeedbackFieldOfStudy do
 
   @type t :: %__MODULE__{
     :"Details" => inda_hr.Model.BaseDetails.t | nil,
-    :"Value" => AnyOfstringFeedbackEntityInput | nil
+    :"Value" => inda_hr.Model.Value1.t | nil
   }
 end
 
@@ -24,7 +24,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.FeedbackFieldOfStudy do
   def decode(value, options) do
     value
     |> deserialize(:"Details", :struct, inda_hr.Model.BaseDetails, options)
-    |> deserialize(:"Value", :struct, inda_hr.Model.AnyOfstringFeedbackEntityInput, options)
+    |> deserialize(:"Value", :struct, inda_hr.Model.Value1, options)
   end
 end
 

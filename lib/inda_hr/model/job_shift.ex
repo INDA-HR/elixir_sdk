@@ -17,7 +17,7 @@ defmodule inda_hr.Model.JobShift do
   @type t :: %__MODULE__{
     :"Details" => inda_hr.Model.BoolBaseModel.t | nil,
     :"Type" => inda_hr.Model.JobShiftType.t | nil,
-    :"Frequency" => AnyOfBaseSalariesValueModelFloatBaseSalariesRangeFloat | nil
+    :"Frequency" => inda_hr.Model.Frequency2.t | nil
   }
 end
 
@@ -27,7 +27,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.JobShift do
     value
     |> deserialize(:"Details", :struct, inda_hr.Model.BoolBaseModel, options)
     |> deserialize(:"Type", :struct, inda_hr.Model.JobShiftType, options)
-    |> deserialize(:"Frequency", :struct, inda_hr.Model.AnyOfBaseSalariesValueModelFloatBaseSalariesRangeFloat, options)
+    |> deserialize(:"Frequency", :struct, inda_hr.Model.Frequency2, options)
   end
 end
 

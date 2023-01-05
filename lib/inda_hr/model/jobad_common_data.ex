@@ -30,21 +30,22 @@ defmodule inda_hr.Model.JobadCommonData do
     :"AdvertisementSites",
     :"Salary",
     :"Benefits",
-    :"ExpirationDate"
+    :"ExpirationDate",
+    :"Status"
   ]
 
   @type t :: %__MODULE__{
     :"JobTitle" => inda_hr.Model.JobTitleHeader.t,
     :"JobDescription" => inda_hr.Model.JobDescription.t,
-    :"EmployerID" => String.t,
+    :"EmployerID" => String.t | nil,
     :"ContactInfo" => [inda_hr.Model.JobadContactInfoContactInfo.t] | nil,
     :"JobLocations" => [inda_hr.Model.BaseLocationsLocation.t] | nil,
     :"RelocationPreferences" => inda_hr.Model.RelocationPreferences.t | nil,
     :"RemoteWorking" => inda_hr.Model.JobAdRemoteWorking.t | nil,
     :"Experience" => inda_hr.Model.Experience.t | nil,
     :"Education" => inda_hr.Model.OptionalRequiredAndPreferredEducation.t | nil,
-    :"Skills" => AnyOfRequiredAndPreferredConstrainedListValueRequiredConstrainedListValuePreferredConstrainedListValue | nil,
-    :"Languages" => inda_hr.Model.OptionalRequiredAndPreferredListJobAdLanguage.t | nil,
+    :"Skills" => inda_hr.Model.Skills.t,
+    :"Languages" => inda_hr.Model.OptionalRequiredAndPreferredConListLanguages.t | nil,
     :"RelatedJobTitles" => [inda_hr.Model.OptionalJobAdJobTitle.t] | nil,
     :"Employment" => inda_hr.Model.JobTitleEmployment.t | nil,
     :"Contract" => inda_hr.Model.JobAdContract.t | nil,
@@ -55,7 +56,8 @@ defmodule inda_hr.Model.JobadCommonData do
     :"AdvertisementSites" => [inda_hr.Model.JobadLinkLink.t] | nil,
     :"Salary" => inda_hr.Model.JobAdSalary.t | nil,
     :"Benefits" => [inda_hr.Model.JobAdBenefit.t] | nil,
-    :"ExpirationDate" => inda_hr.Model.ValueModelDatetime.t | nil
+    :"ExpirationDate" => inda_hr.Model.ValueModelDatetime.t | nil,
+    :"Status" => inda_hr.Model.JobadCommonValueModelStr.t | nil
   }
 end
 
@@ -71,8 +73,8 @@ defimpl Poison.Decoder, for: inda_hr.Model.JobadCommonData do
     |> deserialize(:"RemoteWorking", :struct, inda_hr.Model.JobAdRemoteWorking, options)
     |> deserialize(:"Experience", :struct, inda_hr.Model.Experience, options)
     |> deserialize(:"Education", :struct, inda_hr.Model.OptionalRequiredAndPreferredEducation, options)
-    |> deserialize(:"Skills", :struct, inda_hr.Model.AnyOfRequiredAndPreferredConstrainedListValueRequiredConstrainedListValuePreferredConstrainedListValue, options)
-    |> deserialize(:"Languages", :struct, inda_hr.Model.OptionalRequiredAndPreferredListJobAdLanguage, options)
+    |> deserialize(:"Skills", :struct, inda_hr.Model.Skills, options)
+    |> deserialize(:"Languages", :struct, inda_hr.Model.OptionalRequiredAndPreferredConListLanguages, options)
     |> deserialize(:"RelatedJobTitles", :list, inda_hr.Model.OptionalJobAdJobTitle, options)
     |> deserialize(:"Employment", :struct, inda_hr.Model.JobTitleEmployment, options)
     |> deserialize(:"Contract", :struct, inda_hr.Model.JobAdContract, options)
@@ -84,6 +86,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.JobadCommonData do
     |> deserialize(:"Salary", :struct, inda_hr.Model.JobAdSalary, options)
     |> deserialize(:"Benefits", :list, inda_hr.Model.JobAdBenefit, options)
     |> deserialize(:"ExpirationDate", :struct, inda_hr.Model.ValueModelDatetime, options)
+    |> deserialize(:"Status", :struct, inda_hr.Model.JobadCommonValueModelStr, options)
   end
 end
 

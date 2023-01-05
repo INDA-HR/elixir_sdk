@@ -19,7 +19,7 @@ defmodule inda_hr.Api.ApplicationManagement do
 
   - connection (inda_hr.Connection): Connection to server
   - indexname (String.t): 
-  - jobad_id (AnyOfstringstring): 
+  - jobad_id (JobadId): 
   - resume_id (String.t): 
   - opts (KeywordList): [optional] Optional parameters
     - :body (BaseApplicationRequest): 
@@ -28,7 +28,7 @@ defmodule inda_hr.Api.ApplicationManagement do
   {:ok, inda_hr.Model.ApplicationIdResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec add_application_post(Tesla.Env.client, String.t, inda_hr.Model.AnyOfstringstring.t, String.t, keyword()) :: {:ok, inda_hr.Model.ApplicationIdResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  @spec add_application_post(Tesla.Env.client, String.t, inda_hr.Model.JobadId.t, String.t, keyword()) :: {:ok, inda_hr.Model.ApplicationIdResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def add_application_post(connection, indexname, jobad_id, resume_id, opts \\ []) do
     optional_params = %{
       :body => :body
@@ -57,7 +57,7 @@ defmodule inda_hr.Api.ApplicationManagement do
   - connection (inda_hr.Connection): Connection to server
   - indexname (String.t): 
   - resume_id (String.t): 
-  - jobad_id (AnyOfstringstring): 
+  - jobad_id (JobadId): 
   - application_status_request (ApplicationStatusRequest): 
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
@@ -65,7 +65,7 @@ defmodule inda_hr.Api.ApplicationManagement do
   {:ok, inda_hr.Model.ApplicationIdResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec add_application_stage_post(Tesla.Env.client, String.t, String.t, inda_hr.Model.AnyOfstringstring.t, inda_hr.Model.ApplicationStatusRequest.t, keyword()) :: {:ok, inda_hr.Model.ApplicationIdResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  @spec add_application_stage_post(Tesla.Env.client, String.t, String.t, inda_hr.Model.JobadId.t, inda_hr.Model.ApplicationStatusRequest.t, keyword()) :: {:ok, inda_hr.Model.ApplicationIdResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def add_application_stage_post(connection, indexname, resume_id, jobad_id, application_status_request, _opts \\ []) do
     %{}
     |> method(:post)
@@ -89,7 +89,7 @@ defmodule inda_hr.Api.ApplicationManagement do
 
   - connection (inda_hr.Connection): Connection to server
   - indexname (String.t): 
-  - jobad_id (AnyOfstringstring): 
+  - jobad_id (JobadId): 
   - resume_id (String.t): 
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
@@ -97,7 +97,7 @@ defmodule inda_hr.Api.ApplicationManagement do
   {:ok, inda_hr.Model.ApplicationResponsesStatus.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec application_status_get(Tesla.Env.client, String.t, inda_hr.Model.AnyOfstringstring.t, String.t, keyword()) :: {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.ApplicationResponsesStatus.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  @spec application_status_get(Tesla.Env.client, String.t, inda_hr.Model.JobadId.t, String.t, keyword()) :: {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.ApplicationResponsesStatus.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def application_status_get(connection, indexname, jobad_id, resume_id, _opts \\ []) do
     %{}
     |> method(:get)
@@ -119,19 +119,23 @@ defmodule inda_hr.Api.ApplicationManagement do
 
   - connection (inda_hr.Connection): Connection to server
   - indexname (String.t): 
-  - jobad_id (AnyOfstringstring): 
+  - jobad_id (JobadId): 
   - apply_item_request (ApplyItemRequest): 
   - opts (KeywordList): [optional] Optional parameters
     - :resume_id (String.t): 
+    - :src_lang (String.t): Optional. Language in which the following *Resume.Data* entities are expressed: *Skills*, *WorkExperiences.Skills*, *JobTitles*, *WorkExperiences.PositionTitle* and *Languages*.If missing, the detected *Attachment.CV.File* language is assumed as `src_lang`.
+    - :dst_lang (String.t): Optional. Destination language in which the following *Resume.Data* entities are translated: *Skills*, *WorkExperiences.Skills*, *JobTitles*, *WorkExperiences.PositionTitle* and *Languages*.If missing, the input or detected `src_lang` is assumed as `dst_lang`.
   ## Returns
 
   {:ok, inda_hr.Model.ApplicationIdResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec apply_post(Tesla.Env.client, String.t, inda_hr.Model.AnyOfstringstring.t, inda_hr.Model.ApplyItemRequest.t, keyword()) :: {:ok, inda_hr.Model.ApplicationIdResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  @spec apply_post(Tesla.Env.client, String.t, inda_hr.Model.JobadId.t, inda_hr.Model.ApplyItemRequest.t, keyword()) :: {:ok, inda_hr.Model.ApplicationIdResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def apply_post(connection, indexname, jobad_id, apply_item_request, opts \\ []) do
     optional_params = %{
-      :"resume_id" => :query
+      :"resume_id" => :query,
+      :"src_lang" => :query,
+      :"dst_lang" => :query
     }
     %{}
     |> method(:post)
@@ -154,14 +158,14 @@ defmodule inda_hr.Api.ApplicationManagement do
 
   - connection (inda_hr.Connection): Connection to server
   - indexname (String.t): 
-  - jobad_id (AnyOfstringstring): 
+  - jobad_id (JobadId): 
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
   {:ok, inda_hr.Model.DeleteCandidatesResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec delete_applicants_delete(Tesla.Env.client, String.t, inda_hr.Model.AnyOfstringstring.t, keyword()) :: {:ok, inda_hr.Model.DeleteCandidatesResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  @spec delete_applicants_delete(Tesla.Env.client, String.t, inda_hr.Model.JobadId.t, keyword()) :: {:ok, inda_hr.Model.DeleteCandidatesResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def delete_applicants_delete(connection, indexname, jobad_id, _opts \\ []) do
     %{}
     |> method(:delete)
@@ -184,7 +188,7 @@ defmodule inda_hr.Api.ApplicationManagement do
 
   - connection (inda_hr.Connection): Connection to server
   - indexname (String.t): 
-  - jobad_id (AnyOfstringstring): 
+  - jobad_id (JobadId): 
   - resume_id (String.t): 
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
@@ -192,7 +196,7 @@ defmodule inda_hr.Api.ApplicationManagement do
   {:ok, inda_hr.Model.DeleteApplicationResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec delete_application_delete(Tesla.Env.client, String.t, inda_hr.Model.AnyOfstringstring.t, String.t, keyword()) :: {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:ok, inda_hr.Model.DeleteApplicationResponse.t} | {:error, Tesla.Env.t}
+  @spec delete_application_delete(Tesla.Env.client, String.t, inda_hr.Model.JobadId.t, String.t, keyword()) :: {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:ok, inda_hr.Model.DeleteApplicationResponse.t} | {:error, Tesla.Env.t}
   def delete_application_delete(connection, indexname, jobad_id, resume_id, _opts \\ []) do
     %{}
     |> method(:delete)
@@ -215,7 +219,7 @@ defmodule inda_hr.Api.ApplicationManagement do
 
   - connection (inda_hr.Connection): Connection to server
   - indexname (String.t): 
-  - jobad_id (AnyOfstringstring): 
+  - jobad_id (JobadId): 
   - resume_id (String.t): 
   - status (String.t): The status describes the hiring pipeline level. The statuses are: <code style='color: #333333; opacity: 0.9'>APPLIED</code>, <code style='color: #333333; opacity: 0.9'>SOURCED</code>, <code style='color: #333333; opacity: 0.9'>SCREEN</code>, <code style='color: #333333; opacity: 0.9'>INTERVIEW</code>, <code style='color: #333333; opacity: 0.9'>EVALUATION</code>, <code style='color: #333333; opacity: 0.9'>OFFER</code>, <code style='color: #333333; opacity: 0.9'>HIRED</code>, <code style='color: #333333; opacity: 0.9'>DISQUALIFIED</code>.
   - opts (KeywordList): [optional] Optional parameters
@@ -225,7 +229,7 @@ defmodule inda_hr.Api.ApplicationManagement do
   {:ok, inda_hr.Model.ApplicationIdResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec delete_application_stage_delete(Tesla.Env.client, String.t, inda_hr.Model.AnyOfstringstring.t, String.t, String.t, keyword()) :: {:ok, inda_hr.Model.ApplicationIdResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  @spec delete_application_stage_delete(Tesla.Env.client, String.t, inda_hr.Model.JobadId.t, String.t, String.t, keyword()) :: {:ok, inda_hr.Model.ApplicationIdResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def delete_application_stage_delete(connection, indexname, jobad_id, resume_id, status, opts \\ []) do
     optional_params = %{
       :"date" => :query
@@ -283,7 +287,7 @@ defmodule inda_hr.Api.ApplicationManagement do
 
   - connection (inda_hr.Connection): Connection to server
   - indexname (String.t): 
-  - jobad_id (AnyOfstringstring): 
+  - jobad_id (JobadId): 
   - opts (KeywordList): [optional] Optional parameters
     - :cache (boolean()): Optional. Whether the search results should be cached or not.
     - :cache_time (integer()): Optional. Seconds.Ignored if *cache* is <code style='color: #333333; opacity: 0.9'>false</code>.
@@ -295,7 +299,7 @@ defmodule inda_hr.Api.ApplicationManagement do
   {:ok, inda_hr.Model.GetCandidatesResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec get_applicants_get(Tesla.Env.client, String.t, inda_hr.Model.AnyOfstringstring.t, keyword()) :: {:ok, inda_hr.Model.GetCandidatesResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  @spec get_applicants_get(Tesla.Env.client, String.t, inda_hr.Model.JobadId.t, keyword()) :: {:ok, inda_hr.Model.GetCandidatesResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_applicants_get(connection, indexname, jobad_id, opts \\ []) do
     optional_params = %{
       :"cache" => :query,
@@ -328,14 +332,14 @@ defmodule inda_hr.Api.ApplicationManagement do
   - connection (inda_hr.Connection): Connection to server
   - indexname (String.t): 
   - resume_id (String.t): 
-  - jobad_id (AnyOfstringstring): 
+  - jobad_id (JobadId): 
   - opts (KeywordList): [optional] Optional parameters
   ## Returns
 
   {:ok, inda_hr.Model.GetApplicationResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec get_application_get(Tesla.Env.client, String.t, String.t, inda_hr.Model.AnyOfstringstring.t, keyword()) :: {:ok, inda_hr.Model.GetApplicationResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  @spec get_application_get(Tesla.Env.client, String.t, String.t, inda_hr.Model.JobadId.t, keyword()) :: {:ok, inda_hr.Model.GetApplicationResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_application_get(connection, indexname, resume_id, jobad_id, _opts \\ []) do
     %{}
     |> method(:get)
@@ -402,7 +406,7 @@ defmodule inda_hr.Api.ApplicationManagement do
 
   - connection (inda_hr.Connection): Connection to server
   - indexname (String.t): 
-  - jobad_id (AnyOfstringstring): 
+  - jobad_id (JobadId): 
   - resume_id (String.t): 
   - patch_application_request (PatchApplicationRequest): 
   - opts (KeywordList): [optional] Optional parameters
@@ -411,7 +415,7 @@ defmodule inda_hr.Api.ApplicationManagement do
   {:ok, inda_hr.Model.PatchApplicationResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec patch_application_patch(Tesla.Env.client, String.t, inda_hr.Model.AnyOfstringstring.t, String.t, inda_hr.Model.PatchApplicationRequest.t, keyword()) :: {:ok, inda_hr.Model.PatchApplicationResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  @spec patch_application_patch(Tesla.Env.client, String.t, inda_hr.Model.JobadId.t, String.t, inda_hr.Model.PatchApplicationRequest.t, keyword()) :: {:ok, inda_hr.Model.PatchApplicationResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def patch_application_patch(connection, indexname, jobad_id, resume_id, patch_application_request, _opts \\ []) do
     %{}
     |> method(:patch)

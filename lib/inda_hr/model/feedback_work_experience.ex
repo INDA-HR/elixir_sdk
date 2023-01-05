@@ -20,7 +20,8 @@ defmodule inda_hr.Model.FeedbackWorkExperience do
     :"RemoteWorking",
     :"Employer",
     :"Industries",
-    :"Skills"
+    :"Skills",
+    :"ID"
   ]
 
   @type t :: %__MODULE__{
@@ -35,7 +36,8 @@ defmodule inda_hr.Model.FeedbackWorkExperience do
     :"RemoteWorking" => inda_hr.Model.RemoteWorking.t | nil,
     :"Employer" => inda_hr.Model.Organization.t | nil,
     :"Industries" => [inda_hr.Model.ResumeWorkExperiencesIndustry.t] | nil,
-    :"Skills" => [inda_hr.Model.ResumeSkill.t] | nil
+    :"Skills" => [inda_hr.Model.OptionalResumeSkill.t] | nil,
+    :"ID" => String.t | nil
   }
 end
 
@@ -52,7 +54,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.FeedbackWorkExperience do
     |> deserialize(:"RemoteWorking", :struct, inda_hr.Model.RemoteWorking, options)
     |> deserialize(:"Employer", :struct, inda_hr.Model.Organization, options)
     |> deserialize(:"Industries", :list, inda_hr.Model.ResumeWorkExperiencesIndustry, options)
-    |> deserialize(:"Skills", :list, inda_hr.Model.ResumeSkill, options)
+    |> deserialize(:"Skills", :list, inda_hr.Model.OptionalResumeSkill, options)
   end
 end
 

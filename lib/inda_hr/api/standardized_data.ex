@@ -19,7 +19,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -29,7 +29,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_company_size_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.GetExtendedStandardDataResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_company_size_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -54,7 +54,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -64,7 +64,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_company_type_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_company_type_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -89,7 +89,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -99,7 +99,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_contract_type_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_contract_type_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -124,7 +124,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -134,7 +134,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_disability_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_disability_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -159,7 +159,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -169,7 +169,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_education_title_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_education_title_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -194,7 +194,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -204,7 +204,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_email_label_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_email_label_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -229,7 +229,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -239,7 +239,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_employment_type_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.GetExtendedStandardDataResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_employment_type_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -264,7 +264,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -274,7 +274,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_field_of_study_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_field_of_study_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -299,7 +299,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -309,7 +309,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_gender_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_gender_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -334,7 +334,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -344,7 +344,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_industries_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_industries_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -369,7 +369,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -379,7 +379,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_job_function_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_job_function_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -404,7 +404,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>it</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>it</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -414,7 +414,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_jobshift_type_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_jobshift_type_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -440,7 +440,7 @@ defmodule inda_hr.Api.StandardizedData do
   - connection (inda_hr.Connection): Connection to server
   - license_type (String.t): 
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -450,7 +450,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_license_code_get(Tesla.Env.client, String.t, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_license_code_get(connection, license_type, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -475,7 +475,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -485,7 +485,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_license_type_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_license_type_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -510,7 +510,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -520,7 +520,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_link_label_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_link_label_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -545,7 +545,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -555,7 +555,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_marital_status_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_marital_status_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -580,7 +580,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -590,7 +590,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_name_prefix_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_name_prefix_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -615,7 +615,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -625,7 +625,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_name_suffix_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_name_suffix_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -650,7 +650,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -660,7 +660,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_patent_status_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_patent_status_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -685,7 +685,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -695,7 +695,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_phone_label_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_phone_label_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -720,7 +720,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -730,7 +730,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_protected_group_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_protected_group_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -755,7 +755,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -765,7 +765,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_remote_working_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_remote_working_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -790,7 +790,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -800,7 +800,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_salary_frequency_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_salary_frequency_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -825,7 +825,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -835,7 +835,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_salary_type_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.GetStandardDataResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_salary_type_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}
@@ -860,7 +860,7 @@ defmodule inda_hr.Api.StandardizedData do
 
   - connection (inda_hr.Connection): Connection to server
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
+    - :dst_lang (String.t): The language in which the 'Value' is returned. Supported languages: <code style='color: #333333; opacity: 0.9'>it</code>, <code style='color: #333333; opacity: 0.9'>en</code>, <code style='color: #333333; opacity: 0.9'>es</code>, <code style='color: #333333; opacity: 0.9'>pt</code>, <code style='color: #333333; opacity: 0.9'>de</code>, <code style='color: #333333; opacity: 0.9'>fr</code>, <code style='color: #333333; opacity: 0.9'>pl</code>
     - :codes ([AnyType]): If <code style='color: #333333; opacity: 0.9'>null</code> the API returns all the corresponding <code style='color: #333333; opacity: 0.9'>lang</code> data.
   ## Returns
 
@@ -870,7 +870,7 @@ defmodule inda_hr.Api.StandardizedData do
   @spec get_seniority_level_get(Tesla.Env.client, keyword()) :: {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.GetExtendedStandardDataResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def get_seniority_level_get(connection, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"dst_lang" => :query,
       :"codes" => :query
     }
     %{}

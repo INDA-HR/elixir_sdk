@@ -13,7 +13,7 @@ defmodule inda_hr.Api.JobAdManagement do
 
   @doc """
   Add JobAd
-   This method adds a job advertisement to *indexname* and assigns it a *JobAdID* (namely, a Unique Universal ID or UUID4). This method requires an application/json as content type body.  On the right, we provide an example of input structure; further details are available in dedicated sections.  Note that it is mandatory for users to have previously added information about the employer through the  [Add Company](https://api.inda.ai/hr/docs/v2/#operation/add_company__POST) method; the returned *ID* is the required *EmployerID* of job advertisement data. Obviously, one may skip this step if employer company data already exists.  Furthermore, also *Skills* is a required field, since it is necessary to perform the  [Match Resume](https://api.inda.ai/hr/docs/v2/#operation/match_resumes__POST).  Users may leverage the [Extract Skills from JobAd](https://api.inda.ai/hr/docs/v2/#operation/extract_skills_from_jobad__POST) method and allow INDA to automatically extract skills by analyzing the job advertisement data. It is **highly recommended** to validate the retrieved skills before injecting them to *Add JobAd* requests.   
+   This method adds a job advertisement to *indexname* and assigns it a *JobAdID* (namely, a Unique Universal ID or UUID4). This method requires an application/json as content type body.  On the right, we provide an example of input structure; further details are available in dedicated sections.  Note that it is mandatory for users to have previously added information about the employer through the  [Add Company](https://api.inda.ai/hr/docs/v2/#operation/add_company__POST) method; the returned *ID* is the required *EmployerID* of job advertisement data. Obviously, one may skip this step if employer company data already exists.  Furthermore, also *Skills* is a required field, since it is necessary to perform the  [Match Resume](https://api.inda.ai/hr/docs/v2/#operation/match_resumes__POST).  Users may leverage the [Extract Skills from JobAd](https://api.inda.ai/hr/docs/v2/#operation/extract_skills_from_jobad__POST) method and allow INDA to automatically extract skills by analyzing the job advertisement data. It is **highly recommended** to validate the retrieved skills before injecting them to *Add JobAd* requests.  Entities among skills, job titles and languages are automatically mapped by INDAto the adopted knowledge base, so that users can leverage on standardized values.Original values and entity IDs are available in *Details.RawValues* and *Details.Code*, respectively.  
 
   ## Parameters
 
@@ -21,6 +21,8 @@ defmodule inda_hr.Api.JobAdManagement do
   - indexname (String.t): 
   - job_ad_request (JobAdRequest): 
   - opts (KeywordList): [optional] Optional parameters
+    - :src_lang (String.t): Job Description language. If left empty each section's language will detected automatically.
+    - :dst_lang (String.t): Extracted entities destination language. If left empty is assumed to be equal to the Job Description language.
     - :jobad_id (String.t): 
   ## Returns
 
@@ -30,6 +32,8 @@ defmodule inda_hr.Api.JobAdManagement do
   @spec add_jobad_post(Tesla.Env.client, String.t, inda_hr.Model.JobAdRequest.t, keyword()) :: {:ok, inda_hr.Model.JobAdIdResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
   def add_jobad_post(connection, indexname, job_ad_request, opts \\ []) do
     optional_params = %{
+      :"src_lang" => :query,
+      :"dst_lang" => :query,
       :"jobad_id" => :query
     }
     %{}
@@ -153,7 +157,7 @@ defmodule inda_hr.Api.JobAdManagement do
 
   @doc """
   Patch JobAd
-   This method updates the information related to the job advertisement stored with id *job_ad_id*.  This method accepts an application/json body with the same structure as [Add JobAd](https://api.inda.ai/hr/docs/v2/#operation/add_jobad__POST), however in this case all fields are optional.  Fields that contain differences between the corresponding original ones are substituted, while new fields are added. Bear in mind that lists are considered as singular value, therefore to modify an entry in a list it is necessary to insert the full list.  
+   This method updates the information related to the job advertisement stored with id *job_ad_id*.  This method accepts an application/json body with the same structure as [Add JobAd](https://api.inda.ai/hr/docs/v2/#operation/add_jobad__POST), however in this case all fields are optional.  Fields that contain differences between the corresponding original ones are substituted, while new fields are added. Bear in mind that lists are considered as singular value, therefore to modify an entry in a list it is necessary to insert the full list.  Entities among skills, job titles and languages are automatically mapped by INDAto the adopted knowledge base, so that users can leverage on standardized values.Original values and entity IDs are available in *Details.RawValues* and *Details.Code*, respectively.  
 
   ## Parameters
 
@@ -162,17 +166,22 @@ defmodule inda_hr.Api.JobAdManagement do
   - jobad_id (String.t): 
   - patch_job_ad_request (PatchJobAdRequest): 
   - opts (KeywordList): [optional] Optional parameters
+    - :src_lang (String.t): Job Description language. If left empty each section's language will detected automatically.
   ## Returns
 
   {:ok, inda_hr.Model.PatchJobAdResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
   @spec patch_jobad_patch(Tesla.Env.client, String.t, String.t, inda_hr.Model.PatchJobAdRequest.t, keyword()) :: {:ok, inda_hr.Model.PatchJobAdResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
-  def patch_jobad_patch(connection, indexname, jobad_id, patch_job_ad_request, _opts \\ []) do
+  def patch_jobad_patch(connection, indexname, jobad_id, patch_job_ad_request, opts \\ []) do
+    optional_params = %{
+      :"src_lang" => :query
+    }
     %{}
     |> method(:patch)
     |> url("/hr/v2/index/#{indexname}/jobad/#{jobad_id}/")
     |> add_param(:body, :body, patch_job_ad_request)
+    |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([

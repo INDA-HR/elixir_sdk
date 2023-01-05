@@ -27,11 +27,11 @@ defmodule inda_hr.Model.CompanyCommonOptionalData do
   @type t :: %__MODULE__{
     :"Type" => inda_hr.Model.CompanyCommonType.t | nil,
     :"Size" => inda_hr.Model.Size.t | nil,
-    :"Description" => inda_hr.Model.JobadSectionsValueModelStrictStr.t | nil,
+    :"Description" => inda_hr.Model.BaseLocationsValueModelStrictStr.t | nil,
     :"Headquarters" => [inda_hr.Model.Headquarter.t] | nil,
     :"Branches" => [inda_hr.Model.Branch.t] | nil,
     :"Industries" => [inda_hr.Model.CompanyCommonIndustry.t] | nil,
-    :"Specialties" => [inda_hr.Model.JobadSectionsValueModelStrictStr.t] | nil,
+    :"Specialties" => [inda_hr.Model.BaseLocationsValueModelStrictStr.t] | nil,
     :"Founded" => inda_hr.Model.FoundationYear.t | nil,
     :"Logo" => inda_hr.Model.JobadLinkLink.t | nil,
     :"Link" => inda_hr.Model.JobadLinkLink.t | nil,
@@ -47,11 +47,11 @@ defimpl Poison.Decoder, for: inda_hr.Model.CompanyCommonOptionalData do
     value
     |> deserialize(:"Type", :struct, inda_hr.Model.CompanyCommonType, options)
     |> deserialize(:"Size", :struct, inda_hr.Model.Size, options)
-    |> deserialize(:"Description", :struct, inda_hr.Model.JobadSectionsValueModelStrictStr, options)
+    |> deserialize(:"Description", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
     |> deserialize(:"Headquarters", :list, inda_hr.Model.Headquarter, options)
     |> deserialize(:"Branches", :list, inda_hr.Model.Branch, options)
     |> deserialize(:"Industries", :list, inda_hr.Model.CompanyCommonIndustry, options)
-    |> deserialize(:"Specialties", :list, inda_hr.Model.JobadSectionsValueModelStrictStr, options)
+    |> deserialize(:"Specialties", :list, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
     |> deserialize(:"Founded", :struct, inda_hr.Model.FoundationYear, options)
     |> deserialize(:"Logo", :struct, inda_hr.Model.JobadLinkLink, options)
     |> deserialize(:"Link", :struct, inda_hr.Model.JobadLinkLink, options)

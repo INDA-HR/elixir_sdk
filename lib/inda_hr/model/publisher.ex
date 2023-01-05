@@ -15,8 +15,8 @@ defmodule inda_hr.Model.Publisher do
   ]
 
   @type t :: %__MODULE__{
-    :"Name" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"Category" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
+    :"Name" => inda_hr.Model.BaseBenefitsValueModelStrictStr.t | nil,
+    :"Category" => inda_hr.Model.BaseBenefitsValueModelStrictStr.t | nil,
     :"Link" => inda_hr.Model.JobadLinkLink.t | nil
   }
 end
@@ -25,8 +25,8 @@ defimpl Poison.Decoder, for: inda_hr.Model.Publisher do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Name", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"Category", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
+    |> deserialize(:"Name", :struct, inda_hr.Model.BaseBenefitsValueModelStrictStr, options)
+    |> deserialize(:"Category", :struct, inda_hr.Model.BaseBenefitsValueModelStrictStr, options)
     |> deserialize(:"Link", :struct, inda_hr.Model.JobadLinkLink, options)
   end
 end

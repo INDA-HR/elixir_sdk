@@ -15,7 +15,7 @@ defmodule inda_hr.Model.FeedbackAttachments do
 
   @type t :: %__MODULE__{
     :"Pic" => inda_hr.Model.ImageMetadata.t | nil,
-    :"CV" => inda_hr.Model.ParseResumeTextFile.t | nil
+    :"CV" => inda_hr.Model.ParseResumeDocument.t | nil
   }
 end
 
@@ -24,7 +24,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.FeedbackAttachments do
   def decode(value, options) do
     value
     |> deserialize(:"Pic", :struct, inda_hr.Model.ImageMetadata, options)
-    |> deserialize(:"CV", :struct, inda_hr.Model.ParseResumeTextFile, options)
+    |> deserialize(:"CV", :struct, inda_hr.Model.ParseResumeDocument, options)
   end
 end
 

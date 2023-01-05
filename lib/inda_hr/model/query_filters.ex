@@ -9,12 +9,14 @@ defmodule inda_hr.Model.QueryFilters do
 
   @derive [Poison.Encoder]
   defstruct [
+    :"Must",
     :"Should",
     :"MustNot",
     :"Filter"
   ]
 
   @type t :: %__MODULE__{
+    :"Must" => [inda_hr.Model.FilterField.t] | nil,
     :"Should" => [inda_hr.Model.FilterField.t] | nil,
     :"MustNot" => [inda_hr.Model.FilterField.t] | nil,
     :"Filter" => [inda_hr.Model.FilterField.t] | nil
@@ -25,6 +27,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.QueryFilters do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
+    |> deserialize(:"Must", :list, inda_hr.Model.FilterField, options)
     |> deserialize(:"Should", :list, inda_hr.Model.FilterField, options)
     |> deserialize(:"MustNot", :list, inda_hr.Model.FilterField, options)
     |> deserialize(:"Filter", :list, inda_hr.Model.FilterField, options)

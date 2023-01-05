@@ -21,7 +21,7 @@ defmodule inda_hr.Model.FeedbackEntityInput do
     :"OutputLanguage" => String.t | nil,
     :"EntityType" => String.t,
     :"AllowedOutputs" => [inda_hr.Model.AllowedOutput.t],
-    :"ID" => AnyOfstringinteger | nil
+    :"ID" => inda_hr.Model.Id.t | nil
   }
 end
 
@@ -30,7 +30,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.FeedbackEntityInput do
   def decode(value, options) do
     value
     |> deserialize(:"AllowedOutputs", :list, inda_hr.Model.AllowedOutput, options)
-    |> deserialize(:"ID", :struct, inda_hr.Model.AnyOfstringinteger, options)
+    |> deserialize(:"ID", :struct, inda_hr.Model.Id, options)
   end
 end
 

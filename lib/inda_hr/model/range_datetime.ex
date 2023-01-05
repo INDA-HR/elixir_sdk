@@ -13,7 +13,7 @@ defmodule inda_hr.Model.RangeDatetime do
   ]
 
   @type t :: %__MODULE__{
-    :"Range" => inda_hr.Model.RangeModelDatetime.t
+    :"Range" => inda_hr.Model.Range1.t
   }
 end
 
@@ -21,7 +21,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.RangeDatetime do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Range", :struct, inda_hr.Model.RangeModelDatetime, options)
+    |> deserialize(:"Range", :struct, inda_hr.Model.Range1, options)
   end
 end
 

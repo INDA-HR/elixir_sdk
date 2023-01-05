@@ -17,7 +17,7 @@ defmodule inda_hr.Model.PatchJobAdResponse do
   @type t :: %__MODULE__{
     :"ID" => String.t,
     :"AnalysisStatus" => String.t | nil,
-    :"Updated" => boolean()
+    :"Updated" => boolean() | nil
   }
 end
 

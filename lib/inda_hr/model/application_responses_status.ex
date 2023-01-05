@@ -17,7 +17,7 @@ defmodule inda_hr.Model.ApplicationResponsesStatus do
 
   @type t :: %__MODULE__{
     :"ResumeID" => String.t,
-    :"JobAdID" => AnyOfstringstring | nil,
+    :"JobAdID" => inda_hr.Model.Jobadid.t,
     :"AnalysisStatus" => String.t,
     :"IndexedID" => inda_hr.Model.ApplicationId.t | nil
   }
@@ -27,7 +27,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.ApplicationResponsesStatus do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"JobAdID", :struct, inda_hr.Model.AnyOfstringstring, options)
+    |> deserialize(:"JobAdID", :struct, inda_hr.Model.Jobadid, options)
     |> deserialize(:"IndexedID", :struct, inda_hr.Model.ApplicationId, options)
   end
 end

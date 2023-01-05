@@ -19,13 +19,13 @@ defmodule inda_hr.Model.OptionalCarnegieClassification do
   ]
 
   @type t :: %__MODULE__{
-    :"BasicClassification" => inda_hr.Model.ValueModelStr.t | nil,
-    :"2000Classification" => inda_hr.Model.ValueModelStr.t | nil,
-    :"Size&Setting" => inda_hr.Model.ValueModelStr.t | nil,
-    :"EnrollmentProfile" => inda_hr.Model.ValueModelStr.t | nil,
-    :"UndergraduateProfile" => inda_hr.Model.ValueModelStr.t | nil,
-    :"UndergraduateInstructionalProgram" => inda_hr.Model.ValueModelStr.t | nil,
-    :"GraduateInstructionalProgram" => inda_hr.Model.ValueModelStr.t | nil
+    :"BasicClassification" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"2000Classification" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"Size&Setting" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"EnrollmentProfile" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"UndergraduateProfile" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"UndergraduateInstructionalProgram" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"GraduateInstructionalProgram" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil
   }
 end
 
@@ -33,13 +33,13 @@ defimpl Poison.Decoder, for: inda_hr.Model.OptionalCarnegieClassification do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"BasicClassification", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"2000Classification", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"Size&Setting", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"EnrollmentProfile", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"UndergraduateProfile", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"UndergraduateInstructionalProgram", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"GraduateInstructionalProgram", :struct, inda_hr.Model.ValueModelStr, options)
+    |> deserialize(:"BasicClassification", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"2000Classification", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"Size&Setting", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"EnrollmentProfile", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"UndergraduateProfile", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"UndergraduateInstructionalProgram", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"GraduateInstructionalProgram", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
   end
 end
 

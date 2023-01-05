@@ -20,14 +20,14 @@ defmodule inda_hr.Model.CompanyCommonLocation do
   ]
 
   @type t :: %__MODULE__{
-    :"City" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"Country" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"GeoCoordinates" => inda_hr.Model.ValueModelGeoLocation.t | nil,
-    :"CountryCode" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"PostalCode" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"StreetAddress" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"County" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil,
-    :"Region" => inda_hr.Model.BaseEmploymentsValueModelStrictStr.t | nil
+    :"City" => inda_hr.Model.BaseLocationsValueModelStrictStr.t | nil,
+    :"Country" => inda_hr.Model.BaseLocationsValueModelStrictStr.t | nil,
+    :"GeoCoordinates" => inda_hr.Model.ValueModelMongoDbGeoLocation.t | nil,
+    :"CountryCode" => inda_hr.Model.BaseLocationsValueModelStrictStr.t | nil,
+    :"PostalCode" => inda_hr.Model.BaseLocationsValueModelStrictStr.t | nil,
+    :"StreetAddress" => inda_hr.Model.BaseLocationsValueModelStrictStr.t | nil,
+    :"County" => inda_hr.Model.BaseLocationsValueModelStrictStr.t | nil,
+    :"Region" => inda_hr.Model.BaseLocationsValueModelStrictStr.t | nil
   }
 end
 
@@ -35,14 +35,14 @@ defimpl Poison.Decoder, for: inda_hr.Model.CompanyCommonLocation do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"City", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"Country", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"GeoCoordinates", :struct, inda_hr.Model.ValueModelGeoLocation, options)
-    |> deserialize(:"CountryCode", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"PostalCode", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"StreetAddress", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"County", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
-    |> deserialize(:"Region", :struct, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
+    |> deserialize(:"City", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
+    |> deserialize(:"Country", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
+    |> deserialize(:"GeoCoordinates", :struct, inda_hr.Model.ValueModelMongoDbGeoLocation, options)
+    |> deserialize(:"CountryCode", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
+    |> deserialize(:"PostalCode", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
+    |> deserialize(:"StreetAddress", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
+    |> deserialize(:"County", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
+    |> deserialize(:"Region", :struct, inda_hr.Model.BaseLocationsValueModelStrictStr, options)
   end
 end
 

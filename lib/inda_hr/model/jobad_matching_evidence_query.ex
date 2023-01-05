@@ -15,7 +15,7 @@ defmodule inda_hr.Model.JobadMatchingEvidenceQuery do
 
   @type t :: %__MODULE__{
     :"JobAdIDs" => [String.t],
-    :"Resume" => inda_hr.Model.MatchingResumeDocument.t
+    :"Resume" => inda_hr.Model.Resume.t
   }
 end
 
@@ -23,7 +23,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.JobadMatchingEvidenceQuery do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Resume", :struct, inda_hr.Model.MatchingResumeDocument, options)
+    |> deserialize(:"Resume", :struct, inda_hr.Model.Resume, options)
   end
 end
 

@@ -20,13 +20,14 @@ defmodule inda_hr.Model.WorkExperience do
     :"RemoteWorking",
     :"Employer",
     :"Industries",
-    :"Skills"
+    :"Skills",
+    :"ID"
   ]
 
   @type t :: %__MODULE__{
     :"Seniority" => inda_hr.Model.BaseSeniority.t | nil,
     :"Duration" => inda_hr.Model.BaseDuration.t | nil,
-    :"PositionTitle" => inda_hr.Model.ResumeJobTitle.t | nil,
+    :"PositionTitle" => inda_hr.Model.OptionalResumeJobTitle.t | nil,
     :"Description" => inda_hr.Model.Description.t | nil,
     :"StartDate" => inda_hr.Model.DateTime.t | nil,
     :"EndDate" => inda_hr.Model.DateTime.t | nil,
@@ -35,7 +36,8 @@ defmodule inda_hr.Model.WorkExperience do
     :"RemoteWorking" => inda_hr.Model.RemoteWorking.t | nil,
     :"Employer" => inda_hr.Model.Organization.t | nil,
     :"Industries" => [inda_hr.Model.ResumeWorkExperiencesIndustry.t] | nil,
-    :"Skills" => [inda_hr.Model.ResumeSkill.t] | nil
+    :"Skills" => [inda_hr.Model.OptionalResumeSkill.t] | nil,
+    :"ID" => String.t | nil
   }
 end
 
@@ -45,14 +47,14 @@ defimpl Poison.Decoder, for: inda_hr.Model.WorkExperience do
     value
     |> deserialize(:"Seniority", :struct, inda_hr.Model.BaseSeniority, options)
     |> deserialize(:"Duration", :struct, inda_hr.Model.BaseDuration, options)
-    |> deserialize(:"PositionTitle", :struct, inda_hr.Model.ResumeJobTitle, options)
+    |> deserialize(:"PositionTitle", :struct, inda_hr.Model.OptionalResumeJobTitle, options)
     |> deserialize(:"Description", :struct, inda_hr.Model.Description, options)
     |> deserialize(:"Ongoing", :struct, inda_hr.Model.Ongoing, options)
     |> deserialize(:"Location", :struct, inda_hr.Model.ResumeLocationsLocation, options)
     |> deserialize(:"RemoteWorking", :struct, inda_hr.Model.RemoteWorking, options)
     |> deserialize(:"Employer", :struct, inda_hr.Model.Organization, options)
     |> deserialize(:"Industries", :list, inda_hr.Model.ResumeWorkExperiencesIndustry, options)
-    |> deserialize(:"Skills", :list, inda_hr.Model.ResumeSkill, options)
+    |> deserialize(:"Skills", :list, inda_hr.Model.OptionalResumeSkill, options)
   end
 end
 

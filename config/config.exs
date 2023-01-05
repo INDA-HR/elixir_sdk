@@ -21,6 +21,8 @@ use Mix.Config
 #     config :logger, level: :info
 #
 
+config :inda_hr___i_ntelligent_data_analysis_for_hr, base_url: "https://api.inda.ai"
+
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment
 # by uncommenting the line below and defining dev.exs, test.exs and such.

@@ -16,7 +16,7 @@ defmodule inda_hr.Model.OptionalAccreditationsDetails do
 
   @type t :: %__MODULE__{
     :"URL" => String.t | nil,
-    :"YearOfFirstAccreditation" => AnyOfDateTimedate | nil,
+    :"YearOfFirstAccreditation" => inda_hr.Model.Yearoffirstaccreditation.t | nil,
     :"OtherAccreditations" => [String.t] | nil
   }
 end
@@ -25,7 +25,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.OptionalAccreditationsDetails do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"YearOfFirstAccreditation", :struct, inda_hr.Model.AnyOfDateTimedate, options)
+    |> deserialize(:"YearOfFirstAccreditation", :struct, inda_hr.Model.Yearoffirstaccreditation, options)
   end
 end
 

@@ -15,7 +15,7 @@ defmodule inda_hr.Model.ResumeJobTitle do
 
   @type t :: %__MODULE__{
     :"Details" => inda_hr.Model.ResumeJobTitleDetails.t | nil,
-    :"Value" => String.t | nil
+    :"Value" => String.t
   }
 end
 

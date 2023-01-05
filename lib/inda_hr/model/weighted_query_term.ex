@@ -16,7 +16,7 @@ defmodule inda_hr.Model.WeightedQueryTerm do
 
   @type t :: %__MODULE__{
     :"Term" => String.t,
-    :"Language" => String.t,
+    :"Language" => String.t | nil,
     :"Weight" => float() | nil
   }
 end

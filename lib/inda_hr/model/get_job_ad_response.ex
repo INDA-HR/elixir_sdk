@@ -11,12 +11,14 @@ defmodule inda_hr.Model.GetJobAdResponse do
   defstruct [
     :"Data",
     :"Metadata",
+    :"Attachments",
     :"ID"
   ]
 
   @type t :: %__MODULE__{
     :"Data" => inda_hr.Model.JobadCommonData.t,
     :"Metadata" => inda_hr.Model.JobadCommonPublicMetadata.t,
+    :"Attachments" => inda_hr.Model.JobadCommonAttachments.t,
     :"ID" => String.t
   }
 end
@@ -27,6 +29,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.GetJobAdResponse do
     value
     |> deserialize(:"Data", :struct, inda_hr.Model.JobadCommonData, options)
     |> deserialize(:"Metadata", :struct, inda_hr.Model.JobadCommonPublicMetadata, options)
+    |> deserialize(:"Attachments", :struct, inda_hr.Model.JobadCommonAttachments, options)
   end
 end
 

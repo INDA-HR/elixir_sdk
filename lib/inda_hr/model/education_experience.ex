@@ -20,7 +20,8 @@ defmodule inda_hr.Model.EducationExperience do
     :"Ongoing",
     :"Location",
     :"Organization",
-    :"Courses"
+    :"Courses",
+    :"ID"
   ]
 
   @type t :: %__MODULE__{
@@ -35,7 +36,8 @@ defmodule inda_hr.Model.EducationExperience do
     :"Ongoing" => inda_hr.Model.Ongoing.t | nil,
     :"Location" => inda_hr.Model.ResumeLocationsLocation.t | nil,
     :"Organization" => inda_hr.Model.Organization.t | nil,
-    :"Courses" => [inda_hr.Model.Text.t] | nil
+    :"Courses" => [inda_hr.Model.Text.t] | nil,
+    :"ID" => String.t | nil
   }
 end
 

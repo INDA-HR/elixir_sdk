@@ -15,7 +15,7 @@ defmodule inda_hr.Model.PatchJobAdRequest do
 
   @type t :: %__MODULE__{
     :"Data" => inda_hr.Model.JobadCommonOptionalData.t,
-    :"Metadata" => inda_hr.Model.OptionalMetadata.t | nil
+    :"Metadata" => inda_hr.Model.RequestMetadata.t | nil
   }
 end
 
@@ -24,7 +24,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.PatchJobAdRequest do
   def decode(value, options) do
     value
     |> deserialize(:"Data", :struct, inda_hr.Model.JobadCommonOptionalData, options)
-    |> deserialize(:"Metadata", :struct, inda_hr.Model.OptionalMetadata, options)
+    |> deserialize(:"Metadata", :struct, inda_hr.Model.RequestMetadata, options)
   end
 end
 

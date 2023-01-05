@@ -9,11 +9,15 @@ defmodule inda_hr.Model.CustomizedFields do
 
   @derive [Poison.Encoder]
   defstruct [
+    :"DocType",
+    :"Indexname",
     :"Successful",
     :"Errors"
   ]
 
   @type t :: %__MODULE__{
+    :"DocType" => String.t | nil,
+    :"Indexname" => String.t,
     :"Successful" => boolean(),
     :"Errors" => map()
   }

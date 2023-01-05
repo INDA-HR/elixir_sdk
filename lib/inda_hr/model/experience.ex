@@ -14,7 +14,7 @@ defmodule inda_hr.Model.Experience do
   ]
 
   @type t :: %__MODULE__{
-    :"Duration" => inda_hr.Model.OptionalRequiredAndPreferredUnionDurationValueDurationRange.t | nil,
+    :"Duration" => inda_hr.Model.OptionalRequiredAndPreferredDurationRange.t | nil,
     :"Seniority" => inda_hr.Model.OptionalRequiredAndPreferredSeniorityValue.t | nil
   }
 end
@@ -23,7 +23,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.Experience do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Duration", :struct, inda_hr.Model.OptionalRequiredAndPreferredUnionDurationValueDurationRange, options)
+    |> deserialize(:"Duration", :struct, inda_hr.Model.OptionalRequiredAndPreferredDurationRange, options)
     |> deserialize(:"Seniority", :struct, inda_hr.Model.OptionalRequiredAndPreferredSeniorityValue, options)
   end
 end

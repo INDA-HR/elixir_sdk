@@ -9,21 +9,17 @@ defmodule inda_hr.Model.Id do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"Details",
-    :"Value"
+    
   ]
 
   @type t :: %__MODULE__{
-    :"Details" => inda_hr.Model.EntityBaseDetails.t | nil,
-    :"Value" => String.t | nil
+    
   }
 end
 
 defimpl Poison.Decoder, for: inda_hr.Model.Id do
-  import inda_hr.Deserializer
-  def decode(value, options) do
+  def decode(value, _options) do
     value
-    |> deserialize(:"Details", :struct, inda_hr.Model.EntityBaseDetails, options)
   end
 end
 

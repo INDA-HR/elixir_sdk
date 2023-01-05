@@ -13,7 +13,7 @@ defmodule inda_hr.Model.FeedbackLanguage do
   ]
 
   @type t :: %__MODULE__{
-    :"Value" => AnyOfstringFeedbackEntityInput | nil
+    :"Value" => inda_hr.Model.Value1.t | nil
   }
 end
 
@@ -21,7 +21,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.FeedbackLanguage do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Value", :struct, inda_hr.Model.AnyOfstringFeedbackEntityInput, options)
+    |> deserialize(:"Value", :struct, inda_hr.Model.Value1, options)
   end
 end
 

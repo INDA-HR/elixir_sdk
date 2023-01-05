@@ -17,7 +17,7 @@ defmodule inda_hr.Model.DeleteApplicationResponse do
 
   @type t :: %__MODULE__{
     :"ResumeID" => String.t,
-    :"JobAdID" => AnyOfstringstring | nil,
+    :"JobAdID" => inda_hr.Model.Jobadid.t,
     :"AnalysisStatus" => String.t,
     :"Deleted" => boolean()
   }
@@ -27,7 +27,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.DeleteApplicationResponse do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"JobAdID", :struct, inda_hr.Model.AnyOfstringstring, options)
+    |> deserialize(:"JobAdID", :struct, inda_hr.Model.Jobadid, options)
   end
 end
 

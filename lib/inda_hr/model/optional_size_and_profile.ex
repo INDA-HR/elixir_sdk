@@ -19,13 +19,13 @@ defmodule inda_hr.Model.OptionalSizeAndProfile do
   ]
 
   @type t :: %__MODULE__{
-    :"StudentEnrollment" => inda_hr.Model.ValueModelStr.t | nil,
-    :"AcademicStaff" => inda_hr.Model.ValueModelStr.t | nil,
-    :"ControlType" => inda_hr.Model.ValueModelStr.t | nil,
-    :"EntityType" => inda_hr.Model.ValueModelStr.t | nil,
-    :"AcademicCalendar" => inda_hr.Model.ValueModelStr.t | nil,
-    :"CampusSetting" => inda_hr.Model.ValueModelStr.t | nil,
-    :"LandGrantInstitution" => inda_hr.Model.ValueModelStr.t | nil
+    :"StudentEnrollment" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"AcademicStaff" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"ControlType" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"EntityType" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"AcademicCalendar" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"CampusSetting" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil,
+    :"LandGrantInstitution" => inda_hr.Model.UniversityAdmissionsValueModelStr.t | nil
   }
 end
 
@@ -33,13 +33,13 @@ defimpl Poison.Decoder, for: inda_hr.Model.OptionalSizeAndProfile do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"StudentEnrollment", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"AcademicStaff", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"ControlType", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"EntityType", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"AcademicCalendar", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"CampusSetting", :struct, inda_hr.Model.ValueModelStr, options)
-    |> deserialize(:"LandGrantInstitution", :struct, inda_hr.Model.ValueModelStr, options)
+    |> deserialize(:"StudentEnrollment", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"AcademicStaff", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"ControlType", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"EntityType", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"AcademicCalendar", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"CampusSetting", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
+    |> deserialize(:"LandGrantInstitution", :struct, inda_hr.Model.UniversityAdmissionsValueModelStr, options)
   end
 end
 

@@ -13,7 +13,7 @@ defmodule inda_hr.Model.SlimSkillDetail do
   ]
 
   @type t :: %__MODULE__{
-    :"ESCOClassification" => inda_hr.Model.SlimOptionalEscoSkillMatchCategorized.t | nil
+    :"ESCOClassification" => inda_hr.Model.OptionalSlimEscoSkillMatchCategorized.t | nil
   }
 end
 
@@ -21,7 +21,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.SlimSkillDetail do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"ESCOClassification", :struct, inda_hr.Model.SlimOptionalEscoSkillMatchCategorized, options)
+    |> deserialize(:"ESCOClassification", :struct, inda_hr.Model.OptionalSlimEscoSkillMatchCategorized, options)
   end
 end
 

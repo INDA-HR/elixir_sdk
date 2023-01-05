@@ -14,7 +14,7 @@ defmodule inda_hr.Model.JobAdSkill do
   ]
 
   @type t :: %__MODULE__{
-    :"Details" => inda_hr.Model.JobAdSkillDetails.t,
+    :"Details" => inda_hr.Model.JobAdSkillDetails.t | nil,
     :"Value" => String.t
   }
 end

@@ -13,7 +13,7 @@ defmodule inda_hr.Model.CvAttachmentDocument do
   ]
 
   @type t :: %__MODULE__{
-    :"CV" => inda_hr.Model.ResumeRequestsDocument.t
+    :"CV" => inda_hr.Model.Document.t
   }
 end
 
@@ -21,7 +21,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.CvAttachmentDocument do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"CV", :struct, inda_hr.Model.ResumeRequestsDocument, options)
+    |> deserialize(:"CV", :struct, inda_hr.Model.Document, options)
   end
 end
 

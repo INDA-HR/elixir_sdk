@@ -9,19 +9,19 @@ defmodule inda_hr.Model.MatchResumeEvidenceElement do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"JobTitle",
-    :"Skills",
-    :"Experience",
+    :"ID",
     :"Education",
-    :"ID"
+    :"Experience",
+    :"Skills",
+    :"JobTitles"
   ]
 
   @type t :: %__MODULE__{
-    :"JobTitle" => inda_hr.Model.MatchEvidenceTerms.t,
-    :"Skills" => inda_hr.Model.OptionalRequiredAndPreferredMatchEvidenceTerms.t | nil,
-    :"Experience" => inda_hr.Model.MatchEvidenceExperience.t | nil,
-    :"Education" => inda_hr.Model.MatchEvidenceEducation.t | nil,
-    :"ID" => String.t
+    :"ID" => String.t,
+    :"Education" => inda_hr.Model.MatchResumeEvidenceEducation.t,
+    :"Experience" => inda_hr.Model.MatchResumeEvidenceExperience.t,
+    :"Skills" => [inda_hr.Model.MatchResumeEvidenceSkill.t],
+    :"JobTitles" => [inda_hr.Model.MatchResumeEvidenceJobTitle.t]
   }
 end
 
@@ -29,10 +29,10 @@ defimpl Poison.Decoder, for: inda_hr.Model.MatchResumeEvidenceElement do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"JobTitle", :struct, inda_hr.Model.MatchEvidenceTerms, options)
-    |> deserialize(:"Skills", :struct, inda_hr.Model.OptionalRequiredAndPreferredMatchEvidenceTerms, options)
-    |> deserialize(:"Experience", :struct, inda_hr.Model.MatchEvidenceExperience, options)
-    |> deserialize(:"Education", :struct, inda_hr.Model.MatchEvidenceEducation, options)
+    |> deserialize(:"Education", :struct, inda_hr.Model.MatchResumeEvidenceEducation, options)
+    |> deserialize(:"Experience", :struct, inda_hr.Model.MatchResumeEvidenceExperience, options)
+    |> deserialize(:"Skills", :list, inda_hr.Model.MatchResumeEvidenceSkill, options)
+    |> deserialize(:"JobTitles", :list, inda_hr.Model.MatchResumeEvidenceJobTitle, options)
   end
 end
 

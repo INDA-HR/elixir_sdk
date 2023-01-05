@@ -70,10 +70,18 @@ by adding `inda_hr` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:inda_hr, "~> 2.0.0"}]
+  [{:inda_hr, "~> 2.1.0"}]
 end
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/inda_hr](https://hexdocs.pm/inda_hr).
+
+
+## Configuration
+
+You can override the URL of your server (e.g. if you have a separate development and production server in your configuration files.
+```elixir
+config :inda_hr___i_ntelligent_data_analysis_for_hr, base_url: "https://api.inda.ai"
+```

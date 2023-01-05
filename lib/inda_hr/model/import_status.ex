@@ -9,6 +9,7 @@ defmodule inda_hr.Model.ImportStatus do
 
   @derive [Poison.Encoder]
   defstruct [
+    :"DocType",
     :"Indexname",
     :"LastUpdate",
     :"Done",
@@ -17,6 +18,7 @@ defmodule inda_hr.Model.ImportStatus do
   ]
 
   @type t :: %__MODULE__{
+    :"DocType" => String.t | nil,
     :"Indexname" => String.t,
     :"LastUpdate" => DateTime.t,
     :"Done" => integer(),

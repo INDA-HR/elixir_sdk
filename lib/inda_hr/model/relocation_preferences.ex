@@ -15,7 +15,7 @@ defmodule inda_hr.Model.RelocationPreferences do
 
   @type t :: %__MODULE__{
     :"Details" => inda_hr.Model.RelocationBoolBaseModel.t | nil,
-    :"RelocationDate" => AnyOfValueModelDatetimeRangeDatetime | nil
+    :"RelocationDate" => inda_hr.Model.RangeDatetime.t | nil
   }
 end
 
@@ -24,7 +24,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.RelocationPreferences do
   def decode(value, options) do
     value
     |> deserialize(:"Details", :struct, inda_hr.Model.RelocationBoolBaseModel, options)
-    |> deserialize(:"RelocationDate", :struct, inda_hr.Model.AnyOfValueModelDatetimeRangeDatetime, options)
+    |> deserialize(:"RelocationDate", :struct, inda_hr.Model.RangeDatetime, options)
   end
 end
 

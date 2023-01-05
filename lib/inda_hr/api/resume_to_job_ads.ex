@@ -13,7 +13,7 @@ defmodule inda_hr.Api.ResumeToJobAds do
 
   @doc """
   Match JobAds Evidence from indexed Resume
-   This method can be used for a registered resume; it is analogous to the The [Match JobAds Evidence](https://api.inda.ai/hr/docs/v2/#operation/match_jobads_evidence__POST) method, but it takes in input the ID of the resume instead of its JSON.  Please refer to the [Match JobAds Evidence](https://api.inda.ai/hr/docs/v2/#operation/match_jobads_evidence__POST) description for further details on the method and on its output. 
+  This method can be used for a registered resume; it is analogous to the The [Match JobAds Evidence](https://api.inda.ai/hr/docs/v2/#operation/match_jobads_evidence__POST) method, but it takes in input the ID of the resume instead of its JSON.  Please refer to the [Match JobAds Evidence](https://api.inda.ai/hr/docs/v2/#operation/match_jobads_evidence__POST) description for further details on the method and on its output.
 
   ## Parameters
 
@@ -44,7 +44,7 @@ defmodule inda_hr.Api.ResumeToJobAds do
 
   @doc """
   Match JobAds Evidence
-   This method provides details about the score of a list of job adverts according to the matching with a given resume.  The method should be used after the call of [Match JobAds](https://api.inda.ai/hr/docs/v2/#operation/match_jobads__POST) or [Match JobAds from indexed Resume](https://api.inda.ai/hr/docs/v2/#operation/match_jobads_from_indexed_resume__POST), on a *JobadID* or a set of *JobadID*s returned by one of these methods, in order to obtain the evidence of the matching score.  The relevant information for the matching evidence is the same described in the [Match JobAds](https://api.inda.ai/hr/docs/v2/#operation/match_jobads__POST) method.  For each *JobAdID*, the method returns + A global matching score between all the job titles specified in the job advert and the resume job titles + A detail for each job title in the job advert, containing a matching score for this specified job title and a list of entities found in the resume which are semantically related to the specified job title + A global matching scores between the required skills specified in the job advert and the resume skills + A detail for each required skill in the job advert, containing a matching score for this specified skill and a list of entities found in the resume which are semantically related to the specified skill + An analogous information for the preferred skills specified in the job advert, if present. + A matching score between the [EQF level](https://en.wikipedia.org/wiki/European_Qualifications_Framework) of the candidate and the required and preferred EQF (if any) + A matching score between the total work experiences duration of the candidate and the required and preferred JobAd experience (if any)  Any *JobAdID* not corresponding to an available job advert in the index *indexname* will be ignored.  Note that the [Match JobAds Evidence from indexed Resume](https://api.inda.ai/hr/docs/v2/#operation/match_jobads_evidence_from_indexed_resume__POST), method can be used for a resume which has been already indexed. 
+  This method provides details about the score of a list of job adverts according to the matching with a given resume.  The method should be used after the call of [Match JobAds](https://api.inda.ai/hr/docs/v2/#operation/match_jobads__POST) or [Match JobAds from indexed Resume](https://api.inda.ai/hr/docs/v2/#operation/match_jobads_from_indexed_resume__POST), on a *JobadID* or a set of *JobadID*s returned by one of these methods, in order to obtain the evidence of the matching score.  The relevant information for the matching evidence is the same described in the [Match JobAds](https://api.inda.ai/hr/docs/v2/#operation/match_jobads__POST) method.  For each job advert *ID*, the method returns: + a matching score between the job advert's required and preferred [EQF level](https://en.wikipedia.org/wiki/European_Qualifications_Framework) and the candidate's one (if any); + a matching score between the job advert's required and preferred experience durations and the total duration of the candidate's work experiences (if any); + a matching score between the job advert's required and preferred seniorities and the candidate's seniority (if any); + a detail for each skill in the job advert, containing the relative matching score with respect to the resume; + a detail for each job title in the job advert, containing the relative matching score with respect to the resume.  Each aforementioned matching score has to be considered as an affinity score between job advert's and candidate's data, which contributes to the final [Match JobAds](https://api.inda.ai/hr/docs/v2/#operation/match_jobads__POST) response's <code style='color: #333333; opacity: 0.9'>Score</code>.  Any *JobAdID* not corresponding to an available job advert in the index *indexname* will be ignored.  Note that the [Match JobAds Evidence from indexed Resume](https://api.inda.ai/hr/docs/v2/#operation/match_jobads_evidence_from_indexed_resume__POST), method can be used for a resume which has been already indexed.
 
   ## Parameters
 
@@ -52,17 +52,22 @@ defmodule inda_hr.Api.ResumeToJobAds do
   - indexname (String.t): 
   - jobad_matching_evidence_query (JobadMatchingEvidenceQuery): 
   - opts (KeywordList): [optional] Optional parameters
+    - :src_lang (String.t): Optional. Language in which the following *Resume.Data* entities are expressed: *Skills*, *WorkExperiences.Skills*, *JobTitles*, *WorkExperiences.PositionTitle* and *Languages*.If missing, the detected *Attachment.CV.PlainText* language is assumed as `src_lang`.
   ## Returns
 
   {:ok, inda_hr.Model.MatchJobAdEvidenceResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
   @spec match_jobads_evidence_post(Tesla.Env.client, String.t, inda_hr.Model.JobadMatchingEvidenceQuery.t, keyword()) :: {:ok, inda_hr.Model.MatchJobAdEvidenceResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
-  def match_jobads_evidence_post(connection, indexname, jobad_matching_evidence_query, _opts \\ []) do
+  def match_jobads_evidence_post(connection, indexname, jobad_matching_evidence_query, opts \\ []) do
+    optional_params = %{
+      :"src_lang" => :query
+    }
     %{}
     |> method(:post)
     |> url("/hr/v2/index/#{indexname}/jobads/matching/resume/evidence/")
     |> add_param(:body, :body, jobad_matching_evidence_query)
+    |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
@@ -74,7 +79,7 @@ defmodule inda_hr.Api.ResumeToJobAds do
 
   @doc """
   Match JobAds from indexed Resume
-   This method performs a search among the job adverts in index *indexname* to find the best matches for a given resume already registered in INDA. To perform the search starting from the resume of a candidate not yet registered in INDA, please use the [Match JobAds](https://api.inda.ai/hr/docs/v2/#operation/match_jobads__POST), method.  The method can be used, for instance, in the career page in order to guide the candidate to the best matching with their resume. The method can also be used -- via scheduled execution over a pool of resumes -- to generate for each applicant a feed of  suggested job positions which are relevant for them, in order to improve candidate engagement.  Skills and job titles are particularly relevant and should be present in the resume to obtain an accurate matching. Other relevant information -- e.g., experience duration, [EQF level](https://en.wikipedia.org/wiki/European_Qualifications_Framework)  -- is retrieved from the resume and contributes to the pertinence score of each job adverts, provided that the index contains a sufficient number of job adverts with that information.  
+  This method performs a search among the job adverts in index *indexname* to find the best matches for a given resume already registered in INDA. To perform the search starting from the resume of a candidate not yet registered in INDA, please use the [Match JobAds](https://api.inda.ai/hr/docs/v2/#operation/match_jobads__POST), method.  The method can be used, for instance, in the career page in order to guide the candidate to the best matching with their resume. The method can also be used -- via scheduled execution over a pool of resumes -- to generate for each applicant a feed of  suggested job positions which are relevant for them, in order to improve candidate engagement.  Skills and job titles are particularly relevant and should be present in the resume to obtain an accurate matching. Other relevant information -- e.g., experience duration, [EQF level](https://en.wikipedia.org/wiki/European_Qualifications_Framework)  -- is retrieved from the resume and contributes to the pertinence score of each job adverts, provided that the index contains a sufficient number of job adverts with that information.
 
   ## Parameters
 
@@ -84,8 +89,10 @@ defmodule inda_hr.Api.ResumeToJobAds do
   - base_jobad_matching_query (BaseJobadMatchingQuery): 
   - opts (KeywordList): [optional] Optional parameters
     - :size (integer()): Optional. Number of documents to return.
+    - :offset (integer()): Optional. Number of documents to skip. Ignored if *cache* is <code style='color: #333333; opacity: 0.9'>true</code>.
     - :min_score (float()): Optional. Minimum pertinence score.
-    - :jobad_langs ([String.t]): Languages of the JobAds. Defaults to the Resume language.
+    - :dst_lang ([String.t]): Results languages. If left empty then the results will not be filtered by language and the they will contain multi-language results.
+    - :jobad_langs ([String.t]): DEPRECATED: use <code style='color: #333333; opacity: 0.9'>dst_langs</code> instead. Results languages. If left empty then the results will not be filtered by language.
   ## Returns
 
   {:ok, inda_hr.Model.SearchJobAdMatchResponse.t} on success
@@ -95,7 +102,9 @@ defmodule inda_hr.Api.ResumeToJobAds do
   def match_jobads_from_indexed_resume_post(connection, indexname, resume_id, base_jobad_matching_query, opts \\ []) do
     optional_params = %{
       :"size" => :query,
+      :"offset" => :query,
       :"min_score" => :query,
+      :"dst_lang" => :query,
       :"jobad_langs" => :query
     }
     %{}
@@ -114,7 +123,7 @@ defmodule inda_hr.Api.ResumeToJobAds do
 
   @doc """
   Match JobAds
-   This method performs a search among the job adverts in index *indexname* to find the best matches for a given resume. To perform the search starting from a resume already registered in INDA, we suggest to use the [Match JobAds from indexed Resume](https://api.inda.ai/hr/docs/v2/#operation/match_jobads_from_indexed_resume__POST), method.  The method can be used, for instance, in the career page in order to guide the candidate to the best matching with their resume. The method can also be used -- via scheduled execution over a pool of resumes -- to generate for each candidate a feed of  suggested job positions which are relevant for them, in order to improve candidate engagement.  Skills and job titles are particularly relevant and should be present in the resume to obtain an accurate matching. Other relevant information -- e.g., experience duration, [EQF level](https://en.wikipedia.org/wiki/European_Qualifications_Framework)  -- is retrieved from the resume and contributes to the pertinence score of each job adverts, provided that the index contains a sufficient number of job adverts with that information.  Optionally, a list of [*query filters*](https://api.inda.ai/hr/docs/v2/#tag/Query-Filters) (*QueryFilters*) can be provided to narrow the query. We strongly encourage use of query_filters to reduce computation time and improve the result accuracy.  
+  This method performs a search among the job adverts in index *indexname* to find the best matches for a given resume. To perform the search starting from a resume already registered in INDA, we suggest to use the [Match JobAds from indexed Resume](https://api.inda.ai/hr/docs/v2/#operation/match_jobads_from_indexed_resume__POST), method.  The method can be used, for instance, in the career page in order to guide the candidate to the best matching with their resume. The method can also be used -- via scheduled execution over a pool of resumes -- to generate for each candidate a feed of  suggested job positions which are relevant for them, in order to improve candidate engagement.  Skills and job titles are particularly relevant and should be present in the resume to obtain an accurate matching. Other relevant information -- e.g., experience duration, [EQF level](https://en.wikipedia.org/wiki/European_Qualifications_Framework)  -- is retrieved from the resume and contributes to the pertinence score of each job adverts, provided that the index contains a sufficient number of job adverts with that information.  Optionally, a list of [*query filters*](https://api.inda.ai/hr/docs/v2/#tag/Query-Filters) (*QueryFilters*) can be provided to narrow the query. We strongly encourage use of query_filters to reduce computation time and improve the result accuracy.
 
   ## Parameters
 
@@ -123,8 +132,11 @@ defmodule inda_hr.Api.ResumeToJobAds do
   - jobad_matching_query (JobadMatchingQuery): 
   - opts (KeywordList): [optional] Optional parameters
     - :size (integer()): Optional. Number of documents to return.
+    - :offset (integer()): Optional. Number of documents to skip. Ignored if *cache* is <code style='color: #333333; opacity: 0.9'>true</code>.
     - :min_score (float()): Optional. Minimum pertinence score.
-    - :jobad_langs ([String.t]): Languages of the JobAds. Defaults to the Resume language.
+    - :src_lang (String.t): Job Description language. If left empty each section's language will detected automatically.
+    - :dst_lang ([String.t]): Results languages. If left empty then the results will not be filtered by language and the they will contain multi-language results.
+    - :jobad_langs ([String.t]): DEPRECATED: use <code style='color: #333333; opacity: 0.9'>dst_langs</code> instead. Results languages. If left empty then the results will not be filtered by language.
   ## Returns
 
   {:ok, inda_hr.Model.SearchJobAdMatchResponse.t} on success
@@ -134,7 +146,10 @@ defmodule inda_hr.Api.ResumeToJobAds do
   def match_jobads_post(connection, indexname, jobad_matching_query, opts \\ []) do
     optional_params = %{
       :"size" => :query,
+      :"offset" => :query,
       :"min_score" => :query,
+      :"src_lang" => :query,
+      :"dst_lang" => :query,
       :"jobad_langs" => :query
     }
     %{}

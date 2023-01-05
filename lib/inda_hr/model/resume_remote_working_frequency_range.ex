@@ -15,7 +15,7 @@ defmodule inda_hr.Model.ResumeRemoteWorkingFrequencyRange do
 
   @type t :: %__MODULE__{
     :"Details" => inda_hr.Model.BaseDetails.t | nil,
-    :"Range" => inda_hr.Model.RangeModelFloat.t
+    :"Range" => inda_hr.Model.Range.t
   }
 end
 
@@ -24,7 +24,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.ResumeRemoteWorkingFrequencyRange do
   def decode(value, options) do
     value
     |> deserialize(:"Details", :struct, inda_hr.Model.BaseDetails, options)
-    |> deserialize(:"Range", :struct, inda_hr.Model.RangeModelFloat, options)
+    |> deserialize(:"Range", :struct, inda_hr.Model.Range, options)
   end
 end
 

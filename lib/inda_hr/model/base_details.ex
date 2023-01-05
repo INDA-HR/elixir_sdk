@@ -9,17 +9,19 @@ defmodule inda_hr.Model.BaseDetails do
 
   @derive [Poison.Encoder]
   defstruct [
-    :"IsValidated",
-    :"EntityType",
     :"TextPositions",
-    :"RawValue"
+    :"RawValue",
+    :"RawValues",
+    :"IsValidated",
+    :"EntityType"
   ]
 
   @type t :: %__MODULE__{
-    :"IsValidated" => boolean() | nil,
-    :"EntityType" => String.t | nil,
     :"TextPositions" => [inda_hr.Model.TextPosition.t] | nil,
-    :"RawValue" => String.t | nil
+    :"RawValue" => String.t | nil,
+    :"RawValues" => [inda_hr.Model.TextDetails.t] | nil,
+    :"IsValidated" => boolean() | nil,
+    :"EntityType" => String.t | nil
   }
 end
 
@@ -28,6 +30,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.BaseDetails do
   def decode(value, options) do
     value
     |> deserialize(:"TextPositions", :list, inda_hr.Model.TextPosition, options)
+    |> deserialize(:"RawValues", :list, inda_hr.Model.TextDetails, options)
   end
 end
 

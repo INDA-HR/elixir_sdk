@@ -10,12 +10,14 @@ defmodule inda_hr.Model.JobAdJobTitlesResponse do
   @derive [Poison.Encoder]
   defstruct [
     :"Hits",
+    :"Attachments",
     :"JobTitles"
   ]
 
   @type t :: %__MODULE__{
     :"Hits" => integer(),
-    :"JobTitles" => [inda_hr.Model.JobAdJobTitle.t] | nil
+    :"Attachments" => inda_hr.Model.AttachmentsV3.t | nil,
+    :"JobTitles" => [inda_hr.Model.SlimJobAdJobTitle.t]
   }
 end
 
@@ -23,7 +25,8 @@ defimpl Poison.Decoder, for: inda_hr.Model.JobAdJobTitlesResponse do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"JobTitles", :list, inda_hr.Model.JobAdJobTitle, options)
+    |> deserialize(:"Attachments", :struct, inda_hr.Model.AttachmentsV3, options)
+    |> deserialize(:"JobTitles", :list, inda_hr.Model.SlimJobAdJobTitle, options)
   end
 end
 

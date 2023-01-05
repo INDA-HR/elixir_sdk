@@ -17,7 +17,7 @@ defmodule inda_hr.Model.IndexCreditsInfo do
   @type t :: %__MODULE__{
     :"Indexname" => String.t,
     :"Suite" => inda_hr.Model.SuiteResponse.t | nil,
-    :"History" => AnyOfBaseResponsemapmapGroupByAdvancedGroupByAdvancedApiCalls | nil
+    :"History" => inda_hr.Model.History.t | nil
   }
 end
 
@@ -26,7 +26,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.IndexCreditsInfo do
   def decode(value, options) do
     value
     |> deserialize(:"Suite", :struct, inda_hr.Model.SuiteResponse, options)
-    |> deserialize(:"History", :struct, inda_hr.Model.AnyOfBaseResponsemapmapGroupByAdvancedGroupByAdvancedApiCalls, options)
+    |> deserialize(:"History", :struct, inda_hr.Model.History, options)
   end
 end
 

@@ -35,8 +35,8 @@ defmodule inda_hr.Api.CompanyManagement do
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       { 201, %inda_hr.Model.CompanyIdResponse{}},
-      { 400, %inda_hr.Model.ErrorModel{}},
       { 404, %inda_hr.Model.ErrorModel{}},
+      { 409, %inda_hr.Model.ErrorModel{}},
       { 422, %inda_hr.Model.HttpValidationError{}}
     ])
   end
@@ -50,22 +50,30 @@ defmodule inda_hr.Api.CompanyManagement do
   - connection (inda_hr.Connection): Connection to server
   - term (String.t): Token to be completed
   - opts (KeywordList): [optional] Optional parameters
+    - :size (integer()): Response size.
+    - :token_order (String.t): Whether to autocomplete the term in a sequential way or not. The default *any* value guarantees good performances as well as flexible results.
+    - :fuzzy (boolean()): Fuzzy search. If *True* performs a fuzzy search with max edits set to 2.
   ## Returns
 
   {:ok, inda_hr.Model.CompanyAutocompleteResponse.t} on success
   {:error, Tesla.Env.t} on failure
   """
-  @spec company_autocomplete_get(Tesla.Env.client, String.t, keyword()) :: {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.CompanyAutocompleteResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
-  def company_autocomplete_get(connection, term, _opts \\ []) do
+  @spec company_autocomplete_get(Tesla.Env.client, String.t, keyword()) :: {:ok, inda_hr.Model.CompanyAutocompleteResponse.t} | {:ok, inda_hr.Model.HttpValidationError.t} | {:error, Tesla.Env.t}
+  def company_autocomplete_get(connection, term, opts \\ []) do
+    optional_params = %{
+      :"size" => :query,
+      :"token_order" => :query,
+      :"fuzzy" => :query
+    }
     %{}
     |> method(:get)
     |> url("/hr/v2/company/name/search/autocomplete/")
     |> add_param(:query, :"term", term)
+    |> add_optional_params(optional_params, opts)
     |> Enum.into([])
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       { 200, %inda_hr.Model.CompanyAutocompleteResponse{}},
-      { 404, %inda_hr.Model.ErrorModel{}},
       { 422, %inda_hr.Model.HttpValidationError{}}
     ])
   end
@@ -94,7 +102,6 @@ defmodule inda_hr.Api.CompanyManagement do
     |> evaluate_response([
       { 200, %inda_hr.Model.GetCompanyResponse{}},
       { 404, %inda_hr.Model.ErrorModel{}},
-      { 400, %inda_hr.Model.ErrorModel{}},
       { 422, %inda_hr.Model.HttpValidationError{}}
     ])
   end
@@ -124,7 +131,6 @@ defmodule inda_hr.Api.CompanyManagement do
     |> (&Connection.request(connection, &1)).()
     |> evaluate_response([
       { 200, %inda_hr.Model.PatchCompanyResponse{}},
-      { 400, %inda_hr.Model.ErrorModel{}},
       { 404, %inda_hr.Model.ErrorModel{}},
       { 422, %inda_hr.Model.HttpValidationError{}}
     ])

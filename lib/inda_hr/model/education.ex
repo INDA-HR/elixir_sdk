@@ -17,7 +17,7 @@ defmodule inda_hr.Model.Education do
   @type t :: %__MODULE__{
     :"Title" => inda_hr.Model.EducationTitle.t,
     :"EducationLevelCode" => inda_hr.Model.JobadEducationEducationLevelCode.t | nil,
-    :"Fields" => [inda_hr.Model.BaseEmploymentsValueModelStrictStr.t] | nil
+    :"Fields" => [inda_hr.Model.BaseBenefitsValueModelStrictStr.t] | nil
   }
 end
 
@@ -27,7 +27,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.Education do
     value
     |> deserialize(:"Title", :struct, inda_hr.Model.EducationTitle, options)
     |> deserialize(:"EducationLevelCode", :struct, inda_hr.Model.JobadEducationEducationLevelCode, options)
-    |> deserialize(:"Fields", :list, inda_hr.Model.BaseEmploymentsValueModelStrictStr, options)
+    |> deserialize(:"Fields", :list, inda_hr.Model.BaseBenefitsValueModelStrictStr, options)
   end
 end
 

@@ -17,7 +17,7 @@ defmodule inda_hr.Model.BucketItem do
   @type t :: %__MODULE__{
     :"Resume" => map(),
     :"URL" => String.t,
-    :"InternalID" => AnyOfintegerstring | nil
+    :"InternalID" => inda_hr.Model.Internalid.t
   }
 end
 
@@ -25,7 +25,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.BucketItem do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"InternalID", :struct, inda_hr.Model.AnyOfintegerstring, options)
+    |> deserialize(:"InternalID", :struct, inda_hr.Model.Internalid, options)
   end
 end
 

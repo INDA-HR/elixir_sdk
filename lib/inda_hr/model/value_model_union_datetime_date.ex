@@ -13,7 +13,7 @@ defmodule inda_hr.Model.ValueModelUnionDatetimeDate do
   ]
 
   @type t :: %__MODULE__{
-    :"Value" => AnyOfDateTimedate | nil
+    :"Value" => inda_hr.Model.Value.t
   }
 end
 
@@ -21,7 +21,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.ValueModelUnionDatetimeDate do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"Value", :struct, inda_hr.Model.AnyOfDateTimedate, options)
+    |> deserialize(:"Value", :struct, inda_hr.Model.Value, options)
   end
 end
 

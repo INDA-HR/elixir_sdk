@@ -15,7 +15,7 @@ defmodule inda_hr.Model.ValidationError do
   ]
 
   @type t :: %__MODULE__{
-    :"loc" => [AnyOfstringinteger],
+    :"loc" => [inda_hr.Model.LocationInner.t],
     :"msg" => String.t,
     :"type" => String.t
   }
@@ -25,7 +25,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.ValidationError do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"loc", :list, inda_hr.Model.AnyOfstringinteger, options)
+    |> deserialize(:"loc", :list, inda_hr.Model.LocationInner, options)
   end
 end
 

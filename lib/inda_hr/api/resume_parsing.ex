@@ -20,7 +20,7 @@ defmodule inda_hr.Api.ResumeParsing do
   - connection (inda_hr.Connection): Connection to server
   - base_file_doc (BaseFileDoc): 
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): Language model to use to interpret the text, default is italian.
+    - :src_lang (String.t): Language to use to interpret the text. If missing, language detection is performed.
   ## Returns
 
   {:ok, inda_hr.Model.DocumentAnonymizationResponse.t} on success
@@ -29,7 +29,7 @@ defmodule inda_hr.Api.ResumeParsing do
   @spec anonymize_cv_post(Tesla.Env.client, inda_hr.Model.BaseFileDoc.t, keyword()) :: {:ok, inda_hr.Model.DocumentAnonymizationResponse.t} | {:ok, inda_hr.Model.ErrorModel.t} | {:error, Tesla.Env.t}
   def anonymize_cv_post(connection, base_file_doc, opts \\ []) do
     optional_params = %{
-      :"lang" => :query
+      :"src_lang" => :query
     }
     %{}
     |> method(:post)
@@ -114,7 +114,8 @@ defmodule inda_hr.Api.ResumeParsing do
   - connection (inda_hr.Connection): Connection to server
   - base_file (BaseFile): 
   - opts (KeywordList): [optional] Optional parameters
-    - :lang (String.t): Language to use in order to extract data from the text. Defaults to italian.
+    - :src_lang (String.t): Optional. Language to use to extract data from the *Attachment.CV.File*.If missing, the detected language from the input file text is assumed as `src_lang`.
+    - :dst_lang (String.t): Optional. Destination language in which the following *Data* entities are translated: *Skills*, *WorkExperiences.Skills*, *JobTitles*, *WorkExperiences.PositionTitle* and *Languages*.If missing, the input or detected `src_lang` is assumed as `dst_lang`.
     - :graphics (boolean()): Whether to read skill graphs such as bars, pie charts, and symbols.
   ## Returns
 
@@ -124,7 +125,8 @@ defmodule inda_hr.Api.ResumeParsing do
   @spec parse_resume_post(Tesla.Env.client, inda_hr.Model.BaseFile.t, keyword()) :: {:ok, inda_hr.Model.ErrorModel.t} | {:ok, inda_hr.Model.ExtractionItem.t} | {:error, Tesla.Env.t}
   def parse_resume_post(connection, base_file, opts \\ []) do
     optional_params = %{
-      :"lang" => :query,
+      :"src_lang" => :query,
+      :"dst_lang" => :query,
       :"graphics" => :query
     }
     %{}

@@ -15,7 +15,7 @@ defmodule inda_hr.Model.ExtractionItem do
 
   @type t :: %__MODULE__{
     :"Data" => inda_hr.Model.ResumeCommonData.t,
-    :"Attachments" => inda_hr.Model.ExtractionResponsesAttachments.t
+    :"Attachments" => inda_hr.Model.ResumeAttachmentsV4.t | nil
   }
 end
 
@@ -24,7 +24,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.ExtractionItem do
   def decode(value, options) do
     value
     |> deserialize(:"Data", :struct, inda_hr.Model.ResumeCommonData, options)
-    |> deserialize(:"Attachments", :struct, inda_hr.Model.ExtractionResponsesAttachments, options)
+    |> deserialize(:"Attachments", :struct, inda_hr.Model.ResumeAttachmentsV4, options)
   end
 end
 

@@ -37,7 +37,7 @@ defmodule inda_hr.Model.ResumeCommonData do
   ]
 
   @type t :: %__MODULE__{
-    :"JobTitle" => inda_hr.Model.ResumeJobTitle.t | nil,
+    :"JobTitle" => inda_hr.Model.OptionalResumeJobTitle.t | nil,
     :"PersonalInfo" => inda_hr.Model.PersonalInfo.t | nil,
     :"ContactInfo" => inda_hr.Model.ResumeContactInfoContactInfo.t | nil,
     :"PersonLocation" => inda_hr.Model.PersonLocation.t | nil,
@@ -47,9 +47,9 @@ defmodule inda_hr.Model.ResumeCommonData do
     :"CoverLetter" => inda_hr.Model.Text.t | nil,
     :"References" => [inda_hr.Model.Reference.t] | nil,
     :"ProfileSummary" => inda_hr.Model.ProfileSummary.t | nil,
-    :"Skills" => [inda_hr.Model.ResumeSkill.t] | nil,
-    :"JobTitles" => [inda_hr.Model.ResumeJobTitle.t] | nil,
-    :"Languages" => [inda_hr.Model.ResumeLanguage.t] | nil,
+    :"Skills" => [inda_hr.Model.OptionalResumeSkill.t] | nil,
+    :"JobTitles" => [inda_hr.Model.OptionalResumeJobTitle.t] | nil,
+    :"Languages" => [inda_hr.Model.OptionalResumeLanguage.t] | nil,
     :"Certifications" => [inda_hr.Model.Certification.t] | nil,
     :"Publications" => [inda_hr.Model.Publication.t] | nil,
     :"Awards" => [inda_hr.Model.Award.t] | nil,
@@ -69,7 +69,7 @@ defimpl Poison.Decoder, for: inda_hr.Model.ResumeCommonData do
   import inda_hr.Deserializer
   def decode(value, options) do
     value
-    |> deserialize(:"JobTitle", :struct, inda_hr.Model.ResumeJobTitle, options)
+    |> deserialize(:"JobTitle", :struct, inda_hr.Model.OptionalResumeJobTitle, options)
     |> deserialize(:"PersonalInfo", :struct, inda_hr.Model.PersonalInfo, options)
     |> deserialize(:"ContactInfo", :struct, inda_hr.Model.ResumeContactInfoContactInfo, options)
     |> deserialize(:"PersonLocation", :struct, inda_hr.Model.PersonLocation, options)
@@ -79,9 +79,9 @@ defimpl Poison.Decoder, for: inda_hr.Model.ResumeCommonData do
     |> deserialize(:"CoverLetter", :struct, inda_hr.Model.Text, options)
     |> deserialize(:"References", :list, inda_hr.Model.Reference, options)
     |> deserialize(:"ProfileSummary", :struct, inda_hr.Model.ProfileSummary, options)
-    |> deserialize(:"Skills", :list, inda_hr.Model.ResumeSkill, options)
-    |> deserialize(:"JobTitles", :list, inda_hr.Model.ResumeJobTitle, options)
-    |> deserialize(:"Languages", :list, inda_hr.Model.ResumeLanguage, options)
+    |> deserialize(:"Skills", :list, inda_hr.Model.OptionalResumeSkill, options)
+    |> deserialize(:"JobTitles", :list, inda_hr.Model.OptionalResumeJobTitle, options)
+    |> deserialize(:"Languages", :list, inda_hr.Model.OptionalResumeLanguage, options)
     |> deserialize(:"Certifications", :list, inda_hr.Model.Certification, options)
     |> deserialize(:"Publications", :list, inda_hr.Model.Publication, options)
     |> deserialize(:"Awards", :list, inda_hr.Model.Award, options)
