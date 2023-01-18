@@ -58,30 +58,43 @@ You can contact us at support@intervieweb.it in case of problems, suggestions, o
 ### Building
 
 To install the required dependencies and to build the elixir project, run:
-```
+
+```console
 mix local.hex --force
 mix do deps.get, compile
 ```
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `inda_hr` to your list of dependencies in `mix.exs`:
+If [available in Hex][], the package can be installed by adding `inda_hr` to
+your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:inda_hr, "~> 2.1.0"}]
+  [{:inda_hr, "~> 2.2.0"}]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/inda_hr](https://hexdocs.pm/inda_hr).
-
+Documentation can be generated with [ExDoc][] and published on [HexDocs][]. Once published, the docs can be found at
+[https://hexdocs.pm/inda_hr][docs].
 
 ## Configuration
 
-You can override the URL of your server (e.g. if you have a separate development and production server in your configuration files.
+You can override the URL of your server (e.g. if you have a separate development and production server in your
+configuration files).
+
 ```elixir
-config :inda_hr___i_ntelligent_data_analysis_for_hr, base_url: "https://api.inda.ai"
+config :inda_hr, base_url: "https://api.inda.ai"
 ```
+
+Multiple clients for the same API with different URLs can be created passing different `base_url`s when calling
+`inda_hr.Connection.new/1`:
+
+```elixir
+client = inda_hr.Connection.new(base_url: "https://api.inda.ai")
+```
+
+[exdoc]: https://github.com/elixir-lang/ex_doc
+[hexdocs]: https://hexdocs.pm
+[available in hex]: https://hex.pm/docs/publish
+[docs]: https://hexdocs.pm/inda_hr

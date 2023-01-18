@@ -1,6 +1,8 @@
+.formatter.exs
 .gitignore
 README.md
 config/config.exs
+config/runtime.exs
 lib/inda_hr/api/application_management.ex
 lib/inda_hr/api/authentication.ex
 lib/inda_hr/api/clear_cache.ex
