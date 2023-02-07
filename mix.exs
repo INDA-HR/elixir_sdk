@@ -1,10 +1,10 @@
-defmodule inda_hr.Mixfile do
+defmodule IndaHr.Mixfile do
   use Mix.Project
 
   def project do
     [
       app: :inda_hr,
-      version: "2.32211",
+      version: "2.2.0",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,

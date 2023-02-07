@@ -88,10 +88,10 @@ config :inda_hr, base_url: "https://api.inda.ai"
 ```
 
 Multiple clients for the same API with different URLs can be created passing different `base_url`s when calling
-`inda_hr.Connection.new/1`:
+`IndaHr.Connection.new/1`:
 
 ```elixir
-client = inda_hr.Connection.new(base_url: "https://api.inda.ai")
+client = IndaHr.Connection.new(base_url: "https://api.inda.ai")
 ```
 
 [exdoc]: https://github.com/elixir-lang/ex_doc
