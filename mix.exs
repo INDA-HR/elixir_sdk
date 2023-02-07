@@ -34,7 +34,7 @@ defmodule IndaHr.Mixfile do
   defp deps do
     [
       {:tesla, "~> 1.5"},
-      {:poison, "~> 5.0"},
+      {:poison, ">= 4.0.0"},
       {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
