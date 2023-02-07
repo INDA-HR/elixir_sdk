@@ -1,10 +1,10 @@
-defmodule inda_hr.Mixfile do
+defmodule IndaHr.Mixfile do
   use Mix.Project
 
   def project do
     [
       app: :inda_hr,
-      version: "2.32211",
+      version: "2.2.0",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
@@ -34,7 +34,7 @@ defmodule inda_hr.Mixfile do
   defp deps do
     [
       {:tesla, "~> 1.4"},
-      {:poison, "~> 3.0"},
+      {:poison, ">= 3.0.0"},
       {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
