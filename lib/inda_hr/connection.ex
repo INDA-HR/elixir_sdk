@@ -31,7 +31,8 @@ defmodule IndaHr.Connection do
   """
   @type options :: [
           {:base_url, String.t()},
-          {:user_agent, String.t()}
+          {:user_agent, String.t()},
+          {:api_token, String.t()}
         ]
 
   @doc "Forward requests to Tesla."
